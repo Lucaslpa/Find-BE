@@ -1,3 +1,5 @@
+
+
 export interface SignUpTypesRequest {
     name?: string,
     email?: string,
@@ -12,4 +14,12 @@ export interface SignUpTypesResponse {
   passwordConfirm?: string,
   status?: number,
   error?: string
+}
+
+export interface ValidatorEmailTypes {
+  isInvalid(Email: string): boolean
+}
+
+export interface SignUpControllerTypes {
+  signUp(Data: SignUpTypesRequest): SignUpTypesResponse
 }

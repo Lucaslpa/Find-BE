@@ -1,8 +1,22 @@
 import SignUpController from './SignUp';
+import {ValidatorEmailTypes} from './interfaces';
 
-describe('Login', () => {
+
+const makeSignUpController = (): SignUpController => {
+  class EmailValidator implements ValidatorEmailTypes {
+    isInvalid(Email: string ) {
+      return true;
+    }
+  }
+
+  const emailValidator = new EmailValidator;
+  return new SignUpController(emailValidator);
+};
+
+
+describe('Sign Up', () => {
   test('Should return erro/400 status if without name', () => {
-    const controll = new SignUpController;
+    const controll = makeSignUpController();
     const data = {
       email: 'email@gmail.com',
       password: 'password',
@@ -14,7 +28,7 @@ describe('Login', () => {
   });
 
   test('Should return erro/400 status if without email', () => {
-    const controll = new SignUpController;
+    const controll = makeSignUpController();
     const data = {
       name: 'namehere',
       password: 'password',
@@ -26,7 +40,7 @@ describe('Login', () => {
   });
 
   test('Should return erro/400 status if without password', () => {
-    const controll = new SignUpController;
+    const controll = makeSignUpController();
     const data = {
       name: 'namehere',
       email: 'email@gmail.com',
@@ -38,15 +52,28 @@ describe('Login', () => {
   });
 
   test('Should return erro/400 status if without passwordConfirm', () => {
-    const controll = new SignUpController;
+    const controll = makeSignUpController();
     const data = {
       name: 'namehere',
       email: 'email@gmail.com',
       password: 'password',
-
     };
     const res = controll.signUp(data);
     expect(res.status).toBe(400);
     expect(res.error).toEqual(`missing: passwordConfirm`);
+  });
+
+
+  test('Should return erro/400 status if email is invalid', () => {
+    const controll = makeSignUpController();
+    const data = {
+      name: 'namehere',
+      email: 'email_Invalid@gmail.com',
+      password: 'password',
+      passwordConfirm: 'password',
+    };
+    const res = controll.signUp(data);
+    expect(res.status).toBe(400);
+    expect(res.error).toEqual(`invalid: email_Invalid@gmail.com`);
   });
 });
