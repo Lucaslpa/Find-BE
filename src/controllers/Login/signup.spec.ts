@@ -1,8 +1,14 @@
-import sum from './sum';
+import SignUpController from './SignUp';
 
-describe('Number', () => {
-  test('should return 3', () => {
-    const res = sum(1, 2);
-    expect(res).toBe(3);
+describe('Login', () => {
+  test('should register with success/400 status', () => {
+    const controll = new SignUpController;
+    const data = {
+      email: 'email@gmail.com',
+      password: 'password',
+      passwordConfirm: 'Password',
+    };
+    const res = controll.signUp(data);
+    expect(res.status).toBe(400);
   });
 });
