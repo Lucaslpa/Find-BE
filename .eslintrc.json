@@ -1,0 +1,22 @@
+{
+    "env": {
+    "es6": true,
+        "node": true
+    },
+    "extends": [
+        "google"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "max-len": ["off", { "comments": 200 }], 
+        "require-jsdoc":"off"
+    } 
+}
