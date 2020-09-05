@@ -1,12 +1,15 @@
-export interface SignUpTypesStart {
-    email: string,
-    password: string,
-    passwordConfirm: string,
+export interface SignUpTypesRequest {
+    name?: string,
+    email?: string,
+    password?: string,
+    passwordConfirm?: string,
  }
 
-export interface SignUpTypesFinish {
-  email: string,
-  password: string,
-  passwordConfirm: string,
-  status: number
+export interface SignUpTypesResponse {
+  name?: string,
+  email?: string,
+  password?: string,
+  passwordConfirm?: string,
+  status?: number,
+  error?: string
 }
