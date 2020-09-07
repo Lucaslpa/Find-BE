@@ -1,39 +1,43 @@
-import {SignUpTypesRequest, SignUpTypesResponse, ValidatorEmailTypes, SignUpControllerTypes,
-
+import {SignUpTypesRequest, ValidatorEmailTypes, SignUpControllerTypes,
+  AddAccountType, SignUpTypesResponse,
 } from './interfaces';
+import Request from './Requests/BadRequest';
+const BadRequest = new Request;
 
 class SignUpController implements SignUpControllerTypes {
-   private readonly emailValidator:ValidatorEmailTypes
+   private readonly emailValidator: ValidatorEmailTypes
+   private readonly addaccount: AddAccountType
 
-   constructor(emailValidator: ValidatorEmailTypes) {
+   constructor(emailValidator: ValidatorEmailTypes, addaccount: AddAccountType) {
      this.emailValidator = emailValidator;
+     this.addaccount = addaccount;
    }
 
 
-   signUp(Data: SignUpTypesRequest): SignUpTypesResponse {
+   async signUp(Data: SignUpTypesRequest): Promise<SignUpTypesResponse> {
      const fields = [Data.name, Data.email, Data.password, Data.passwordConfirm];
      const fieldsName = ['name', 'email', 'password', 'passwordConfirm'];
      for (let i = 0; i < fields.length; i++ ) {
        if (!fields[i]) {
-         return {
-           status: 400,
-           error: `missing: ${fieldsName[i]}`,
-         };
+         return BadRequest.missing(fieldsName[i]);
        }
      };
 
-     if (Data.email) {
-       const emailIsValid = this.emailValidator.isInvalid(Data.email);
-       if (emailIsValid) {
-         console.log(Data.email);
-         return {
-           status: 400,
-           error: `invalid: ${Data.email}`,
-         };
+
+     if (Data.passwordConfirm) {
+       if (Data.password !== Data.passwordConfirm) {
+         return BadRequest.invalid('passwordConfirm');
        }
      }
 
-     return Data;
+     if (Data.email) {
+       const emailIsValid = this.emailValidator.isValid(Data.email);
+       if (!emailIsValid) {
+         return BadRequest.invalid(Data.email);
+       }
+     }
+     return await this.addaccount.addAccount(Data);
+     ;
    }
 }
 
