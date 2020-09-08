@@ -1,6 +1,6 @@
 import SignUpController from './SignUp';
 import {ValidatorEmailTypes} from './interfaces';
-import AddAccount from './useCase/accountCreate';
+import AddAccount from '../../../domain/useCase/accountCreate';
 
 interface MakeTypes {
   emailValidator: ValidatorEmailTypes,

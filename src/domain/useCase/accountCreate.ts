@@ -1,7 +1,6 @@
-import {AddAccountInsert, AddAccountInserted} from '../interfaces';
+import {AddAccountInsert, AddAccountInserted, AddAccountType} from '../interfaces';
 
-
-class AddAccount {
+class AddAccount implements AddAccountType {
   async addAccount(DataAccount: AddAccountInsert): Promise<AddAccountInserted> {
     const AccountInserted = {
       status: 200,
