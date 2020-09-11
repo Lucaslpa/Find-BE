@@ -2,7 +2,7 @@ import {Request, Response} from 'express';
 
 
 class Routes {
-  acessado(req : Request, res: Response) {
+  signup(req : Request, res: Response) {
     res.json('acessada');
   }
 }

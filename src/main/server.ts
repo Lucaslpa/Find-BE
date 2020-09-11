@@ -9,3 +9,5 @@ app.use(routers);
 
 
 app.listen(2500, () => console.log('server running'));
+
+export default app;
