@@ -103,18 +103,4 @@ describe('Sign Up', () => {
     expect(res.status).toBe(400);
     expect(res.error).toEqual(`invalid: passwordConfirm`);
   });
-
-  test('Should return success/200 status if account is created', async () => {
-    const {signupcontroller} = makeSignUpController();
-
-    const data = {
-      name: 'namehere',
-      email: 'email@gmail.com',
-      password: 'password',
-      passwordConfirm: 'password',
-    };
-    const res = await signupcontroller.signUp(data);
-    expect(res.status).toBe(200);
-    expect(res.account).toEqual({id: 2, ...data});
-  });
 });

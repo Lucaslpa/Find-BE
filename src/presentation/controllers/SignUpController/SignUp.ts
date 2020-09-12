@@ -2,6 +2,8 @@ import {SignUpTypesRequest, ValidatorEmailTypes, SignUpControllerTypes,
   AddAccountType, SignUpTypesResponse,
 } from './interfaces';
 import Request from './Requests/BadRequest';
+
+
 const BadRequest = new Request;
 
 class SignUpController implements SignUpControllerTypes {
@@ -31,12 +33,25 @@ class SignUpController implements SignUpControllerTypes {
      }
 
      if (Data.email) {
-       const emailIsValid = this.emailValidator.isValid(Data.email);
+       const emailIsValid = await this.emailValidator.isValid(Data.email);
        if (!emailIsValid) {
          return BadRequest.invalid(Data.email);
        }
      }
-     return await this.addaccount.addAccount(Data);
+     const newdata = {
+       email: Data.email,
+       name: Data.name,
+       password: Data.password,
+     };
+     const account = await this.addaccount.add(newdata);
+
+     return {
+       account: {
+         id: account.id,
+         name: account.name,
+         email: account.email,
+       },
+     };
      ;
    }
 }

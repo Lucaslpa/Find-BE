@@ -19,3 +19,7 @@ export interface DataAccountTypesRes {
 export interface AddAccountRepositoryTypes {
     addToDB(Account: DataAccountTypes): Promise<DataAccountTypesRes>
  }
+
+export interface dbAccountTypes {
+    add(DataAccount: DataAccountTypes ): Promise<DataAccountTypesRes>
+ }

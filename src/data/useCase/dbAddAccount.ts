@@ -1,7 +1,7 @@
-import {encrypt, DataAccountTypes, DataAccountTypesRes, AddAccountRepositoryTypes} from '../interfaces';
+import {encrypt, DataAccountTypes, DataAccountTypesRes, AddAccountRepositoryTypes, dbAccountTypes} from '../interfaces';
 
 
-class dbAddAccount {
+class dbAddAccount implements dbAccountTypes {
     private readonly encrypt: encrypt
     private readonly addaccountrepository: AddAccountRepositoryTypes
     constructor(encrypt: encrypt, addaccountrepository: AddAccountRepositoryTypes) {
@@ -12,6 +12,7 @@ class dbAddAccount {
       const passwordHashed = await this.encrypt.encrypt(DataAccount.password);
       DataAccount.password = passwordHashed;
       const res = await this.addaccountrepository.addToDB(DataAccount);
+
       return new Promise((resolve) => resolve(res));
     }
 }

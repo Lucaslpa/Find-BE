@@ -1,4 +1,4 @@
-
+import {DataAccountTypesRes} from '../../../data/interfaces';
 
 export interface SignUpTypesRequest {
     name?: string,
@@ -8,13 +8,13 @@ export interface SignUpTypesRequest {
  }
 
 export interface SignUpTypesResponse {
-  status: number
+  status?: number
   account?: {
     id: number
     name: string,
     email: string,
-    password: string,
-    passwordConfirm: string,
+
+
   }
   error?: string
 }
@@ -38,6 +38,12 @@ export interface AddAccountInserted {
   account: any
 }
 
+interface DataAccountTypes {
+  email?: string,
+  name?: string,
+  password?: string
+}
+
 export interface AddAccountType {
-  addAccount(DataAccount: AddAccountInsert): Promise<AddAccountInserted>
+   add(DataAccount: DataAccountTypes ): Promise<DataAccountTypesRes>
 }

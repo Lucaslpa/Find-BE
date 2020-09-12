@@ -1,13 +1,14 @@
-import {AddAccountInsert, AddAccountInserted, AddAccountType} from '../interfaces';
+import {AddAccountType} from '../interfaces';
+import {DataAccountTypesRes, DataAccountTypes} from '../../data/interfaces';
 
 class AddAccount implements AddAccountType {
-  async addAccount(DataAccount: AddAccountInsert): Promise<AddAccountInserted> {
+  async add(DataAccount: DataAccountTypes ): Promise<DataAccountTypesRes> {
     const AccountInserted = {
-      status: 200,
-      account: {
-        id: 2,
-        ...DataAccount,
-      },
+
+
+      id: 2,
+      ...DataAccount,
+
     };
     return new Promise((resolve) => resolve(AccountInserted));
   }

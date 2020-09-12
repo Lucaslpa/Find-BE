@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest  --runInBand",
+    "test": "jest --detectOpenHandles --runInBand",
     "test:integration": "jest --detectOpenHandles --runInBand -c jest.integration.config.js",
     "start": "ts-node-dev  src/main/server.ts"
   },

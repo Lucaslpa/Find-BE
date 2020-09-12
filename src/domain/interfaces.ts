@@ -1,3 +1,4 @@
+import {DataAccountTypesRes, DataAccountTypes} from '../data/interfaces';
 export interface AddAccountInsert {
     name?: string,
     email?: string,
@@ -10,6 +11,6 @@ export interface AddAccountInserted {
   }
 
 export interface AddAccountType {
-    addAccount(DataAccount: AddAccountInsert): Promise<AddAccountInserted>
+  add(DataAccount: DataAccountTypes ): Promise<DataAccountTypesRes>
   }
 
