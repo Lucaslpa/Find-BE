@@ -1,4 +1,4 @@
-import {encrypt, DataAccountTypes, DataAccountTypesRes, AddAccountRepositoryTypes, dbAccountTypes} from '../interfaces';
+import {encrypt, DataAccountTypes, DataAccountTypesRes, AddAccountRepositoryTypes, dbAccountTypes} from '../../interfaces';
 
 
 class dbAddAccount implements dbAccountTypes {

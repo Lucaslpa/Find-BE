@@ -1,5 +1,5 @@
 import AddAccount from './dbAddAccount';
-import {DataAccountTypesRes, AddAccountRepositoryTypes, DataAccountTypes, encrypt} from '../interfaces';
+import {DataAccountTypesRes, AddAccountRepositoryTypes, DataAccountTypes, encrypt} from '../../interfaces';
 
 class Encrytp implements encrypt {
   async encrypt(password: string): Promise<string> {

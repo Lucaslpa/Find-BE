@@ -1,6 +1,6 @@
 import SignUpController from '../../presentation/controllers/SignUpController/SignUp';
 import EmailValidator from '../../utils/email-valitator/emailvalitador';
-import DbAddAccount from '../../data/useCase/dbAddAccount';
+import DbAddAccount from '../../data/useCase/dbAddAccount/dbAddAccount';
 import Criptography from '../../infra/criptography/bcrypt.adapter';
 import DqliteAccountRepo from '../../infra/db/sqlite/sqliteAccountRepo';
 import TypeormQuerys from '../../infra/db/typeorm/typesOrmQuerys';

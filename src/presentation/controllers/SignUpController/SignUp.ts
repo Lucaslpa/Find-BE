@@ -1,6 +1,8 @@
 import {SignUpTypesRequest, ValidatorEmailTypes, SignUpControllerTypes,
   AddAccountType, SignUpTypesResponse,
 } from './interfaces';
+import {Validation} from '../validators/interfaces';
+
 import Request from './Requests/BadRequest';
 
 
@@ -9,15 +11,22 @@ const BadRequest = new Request;
 class SignUpController implements SignUpControllerTypes {
    private readonly emailValidator: ValidatorEmailTypes
    private readonly addaccount: AddAccountType
+   private readonly validation: Validation
 
-   constructor(emailValidator: ValidatorEmailTypes, addaccount: AddAccountType) {
+   constructor(emailValidator: ValidatorEmailTypes, addaccount: AddAccountType, validator: Validation) {
+     this.validation = validator;
      this.emailValidator = emailValidator;
      this.addaccount = addaccount;
    }
 
 
    async signUp(Data: SignUpTypesRequest): Promise<SignUpTypesResponse> {
-     const fields = [Data.name, Data.email, Data.password, Data.passwordConfirm];
+     const fields = [Data.name, Data.email, Data.password, Data.passwordConfirm]
+
+
+     ;
+
+     this.validation.validate(Data);
      const fieldsName = ['name', 'email', 'password', 'passwordConfirm'];
      for (let i = 0; i < fields.length; i++ ) {
        if (!fields[i]) {
