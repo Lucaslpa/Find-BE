@@ -1,10 +1,10 @@
 import SignUpController from '../../presentation/controllers/SignUpController/SignUp';
-import EmailValidator from '../../utils/email-valitator/emailvalitador';
 import DbAddAccount from '../../data/useCase/dbAddAccount/dbAddAccount';
 import Criptography from '../../infra/criptography/bcrypt.adapter';
 import DqliteAccountRepo from '../../infra/db/sqlite/sqliteAccountRepo';
 import TypeormQuerys from '../../infra/db/typeorm/typesOrmQuerys';
 import entityAccount from '../../infra/db/sqlite/database/entity/Accounts.entity';
+import signUpValidationComposite from './signup-validation-composite';
 
 
 function SignUpFactory() {
@@ -12,9 +12,10 @@ function SignUpFactory() {
   const repo = new DqliteAccountRepo(querys);
   const cript = new Criptography;
   const dbaddaccount = new DbAddAccount(cript, repo );
-  const emailvalidator = new EmailValidator;
+  const validationcomposite = signUpValidationComposite();
 
-  return new SignUpController(emailvalidator, dbaddaccount );
+
+  return new SignUpController( dbaddaccount, validationcomposite );
 }
 
 

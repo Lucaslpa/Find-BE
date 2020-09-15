@@ -8,6 +8,11 @@ export default class Encrytp implements encrypt {
     const HashedPassword = await bcrypt.hash(value, 12);
     return Promise.resolve(HashedPassword);
   }
+
+  async compare(value: string, hash: string): Promise<boolean> {
+    const isEqual = await bcrypt.compare(value, hash);
+    return Promise.resolve(isEqual);
+  }
 }
 
 

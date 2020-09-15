@@ -23,3 +23,11 @@ export interface AddAccountRepositoryTypes {
 export interface dbAccountTypes {
     add(DataAccount: DataAccountTypes ): Promise<DataAccountTypesRes>
  }
+
+export interface DBrepoType {
+    loadAccount(email: string): Promise<DataAccountTypesRes | undefined>
+ }
+
+export interface TokenGeneratorType {
+    loadToken(data: DataAccountTypesRes) : Promise<string>
+ }
