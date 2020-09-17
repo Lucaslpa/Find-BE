@@ -14,7 +14,7 @@ describe('jwtoken', () => {
     const spy = jest.spyOn(jwt, 'sign');
     jwtokenadapter.loadToken('any_value');
 
-    expect(spy).toHaveBeenCalledWith({id: 'any_value'}, 'private_key', {algorithm: 'RS256'});
+    expect(spy).toHaveBeenCalledWith({id: 'any_value'}, 'private_key');
   });
 
   test('should return error if tokens fail', async () => {

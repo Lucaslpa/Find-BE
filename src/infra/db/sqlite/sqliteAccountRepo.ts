@@ -13,4 +13,9 @@ export default class sqliteAccountRepo implements AddAccountRepositoryTypes {
     const account = await this.typeormQuery.create(Account);
     return Promise.resolve(account);
   }
+
+  async getOfDb(email: string): Promise<DataAccountTypesRes> {
+    const res = await this.typeormQuery.getEntity(email);
+    return Promise.resolve(res);
+  }
 }

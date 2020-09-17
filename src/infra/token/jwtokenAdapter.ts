@@ -9,7 +9,7 @@ export default class Token implements tokentype {
     }
 
     async loadToken(data: string) : Promise<string > {
-      const token = jwt.sign({id: data}, this.privateKey, {algorithm: 'RS256'});
+      const token = jwt.sign({id: data}, this.privateKey);
 
       return token;
     }

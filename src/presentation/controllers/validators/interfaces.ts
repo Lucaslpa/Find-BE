@@ -5,6 +5,13 @@ export interface error {
 
 }
 
+export interface success {
+
+          status: number,
+          data: any
+
+}
+
 export interface Validation {
     validate(data: any): undefined | error
 

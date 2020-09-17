@@ -1,11 +1,12 @@
 import Authenticate from './authenticate';
 import {DataAccountTypesRes} from '../../interfaces';
+import Compare from '../../../infra/criptography/bcrypt.adapter';
 
 import Error from '../../../domain/protocols/errors/ProcessError';
 
 const token = () => {
   class Token {
-    async loadToken(data: DataAccountTypesRes) : Promise<string> {
+    async loadToken(data: string) : Promise<string > {
       return '34242342342423523';
     }
   }
@@ -15,21 +16,22 @@ const token = () => {
 
 const dbRepo = () => {
   class DBrepo {
-    async loadAccount(email: string): Promise<DataAccountTypesRes | undefined> {
-      return {
+    getOfDb(email: string): Promise<DataAccountTypesRes> {
+      return Promise.resolve({
         id: 10,
         name: 'lucas',
         email: 'lucas@gmail.com',
         password: '222',
-      };
+      });
     }
   }
   return new DBrepo;
 };
 const makeAuthenticate = () => {
   const tokenGenerator = token();
+  const compare = new Compare;
   const dbrepo = dbRepo();
-  const authenticate = new Authenticate(dbrepo, tokenGenerator);
+  const authenticate = new Authenticate(dbrepo, tokenGenerator, compare);
   return {
     authenticate,
     dbrepo,

@@ -1,4 +1,4 @@
-import {error} from '../../presentation/controllers/validators/interfaces';
+import {error, success} from '../../presentation/controllers/validators/interfaces';
 
 export interface DataLoginReceivedTypes {
      email: string
@@ -6,6 +6,6 @@ export interface DataLoginReceivedTypes {
     }
 
 export interface ClassAuthenticate {
-      auth(email: string, password: string ): Promise<string | error>
+      auth(email: string, password: string ): Promise<error | success>
 }
 

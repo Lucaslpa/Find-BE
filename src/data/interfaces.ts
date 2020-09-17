@@ -25,9 +25,13 @@ export interface dbAccountTypes {
  }
 
 export interface DBrepoType {
-    loadAccount(email: string): Promise<DataAccountTypesRes | undefined>
+    getOfDb(email: string): Promise<DataAccountTypesRes>
  }
 
 export interface TokenGeneratorType {
-    loadToken(data: DataAccountTypesRes) : Promise<string>
+    loadToken(data: string) : Promise<string >
+ }
+
+export interface CompareType {
+     compare(value: string, hash: string): Promise<boolean>
  }

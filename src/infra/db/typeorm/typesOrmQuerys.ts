@@ -5,7 +5,14 @@ class QueryRepository implements QueryRepositoryTypes {
  constructor(repo: any) {
    this.repo = repo;
  }
+ async getEntity(Data: any): Promise<any> {
+   const Repository = await getRepository(this.repo);
+   const res = await Repository.findOne({where: {
+     email: Data,
+   }});
 
+   return res;
+ }
 
  async create(Data: any): Promise<any> {
    const Repository = await getRepository(this.repo);
