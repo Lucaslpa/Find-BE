@@ -2,11 +2,12 @@ import LoginController from './LoginController';
 import EmailValidator from '../../../utils/email-valitator/emailvalitador';
 import {ClassAuthenticate} from '../../../domain/useCase/authentication.interface';
 import ERROR from '../../../domain/protocols/errors/ProcessError';
+import {error, success} from '../../../presentation/controllers/validators/interfaces';
 
 
 class Authenticate implements ClassAuthenticate {
-  async auth(email: string, password: string ): Promise<string> {
-    return new Promise((resolve)=> resolve(''));
+  async auth(email: string, password: string ): Promise<error | success> {
+    return new Promise((resolve)=> resolve({status: 500, error: 'sim'}));
   }
 }
 
@@ -19,14 +20,21 @@ function makeLoginController() {
   };
 }
 
+const makeData = () => {
+  return {
+    email: 'lucas@gmail.com',
+    password: '123',
+  };
+};
+
 
 describe('Login Controller ', () => {
   test('should return status 400/error if  email is not provided ', async () => {
     const {logincontroller} = makeLoginController();
     const data = {
-      body: {
-        password: '123',
-      },
+
+      password: '123',
+
     };
     const res = await logincontroller.login(data);
     expect(res.status).toEqual(400);
@@ -35,9 +43,9 @@ describe('Login Controller ', () => {
 
   test('should return status 400/error if  password is not provided ', async () => {
     const {logincontroller} = makeLoginController();
-    const data = {body: {
+    const data = {
       email: 'lucas@gmail.com',
-    }};
+    };
     const res = await logincontroller.login(data);
     expect(res.status).toEqual(400);
     expect(res.error).toEqual('Error: password not inserted');
@@ -46,11 +54,12 @@ describe('Login Controller ', () => {
 
   test('should return status 400/error if  email is invalid ', async () => {
     const {logincontroller} = makeLoginController();
-    const data = {body: {
+    const Data = {
       email: 'lucasgmail.com',
       password: '123',
-    }};
-    const res = await logincontroller.login(data);
+    };
+
+    const res = await logincontroller.login(Data);
     expect(res.status).toEqual(400);
     expect(res.error).toEqual('Error: Email is invalid');
   });
@@ -61,12 +70,10 @@ describe('Login Controller ', () => {
     jest.spyOn(emailvalidator, 'isValid').mockImplementationOnce(() => {
       throw new Error();
     });
+    const Data = makeData();
 
-    const data = {body: {
-      email: 'lucasgmail.com',
-      password: '123',
-    }};
-    const res = await logincontroller.login(data);
+
+    const res = await logincontroller.login(Data);
 
     expect(res).toEqual(new ERROR().return(`${new Error()}`));
   });
@@ -74,13 +81,11 @@ describe('Login Controller ', () => {
 
   test('should return status error if  authenticate throws ', async () => {
     const {logincontroller, authenticate} = makeLoginController();
-    jest.spyOn( authenticate, 'auth' ).mockReturnValue(new Promise((resolve)=> resolve('')));
+    jest.spyOn( authenticate, 'auth' ).mockReturnValue(new Promise((resolve)=> resolve(new ERROR().return(' Unauthorized'))));
+    const Data = makeData();
 
-    const data = {body: {
-      email: 'lucas@gmail.com',
-      password: '123',
-    }};
-    const res = await logincontroller.login(data);
+
+    const res = await logincontroller.login(Data);
 
     expect(res).toEqual(new ERROR().return(' Unauthorized'));
   });

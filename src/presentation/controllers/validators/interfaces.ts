@@ -9,6 +9,7 @@ export interface success {
 
           status: number,
           data: any
+          error?: any
 
 }
 

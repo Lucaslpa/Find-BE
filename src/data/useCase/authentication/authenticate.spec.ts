@@ -36,6 +36,7 @@ const makeAuthenticate = () => {
     authenticate,
     dbrepo,
     tokenGenerator,
+    compare,
   };
 };
 
@@ -74,8 +75,14 @@ describe('authenticate', () => {
   });
 
   test('Ensure loadToken be called with correct data', async () => {
-    const {authenticate, tokenGenerator} = makeAuthenticate();
-
+    const {authenticate, tokenGenerator, dbrepo, compare} = makeAuthenticate();
+    jest.spyOn(dbrepo, 'getOfDb').mockReturnValueOnce(new Promise((resolve) => resolve({
+      id: 10,
+      name: 'lucas',
+      email: 'lucas@gmail.com',
+      password: '222',
+    })));
+    jest.spyOn(compare, 'compare').mockReturnValueOnce(Promise.resolve(true));
     const spy = jest.spyOn(tokenGenerator, 'loadToken');
     const data = {
       email: 'lucas@gmail',
@@ -83,11 +90,6 @@ describe('authenticate', () => {
     };
 
     await authenticate.auth(data.email, data.password);
-    expect(spy).toHaveBeenCalledWith({
-      id: 10,
-      name: 'lucas',
-      email: 'lucas@gmail.com',
-      password: '222',
-    });
+    expect(spy).toHaveBeenCalledWith('10');
   });
 });

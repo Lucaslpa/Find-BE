@@ -33,7 +33,7 @@ class LoginController implements LoginControllerTypes {
        let token: error | success;
        if (email && password) {
          token = await this.auth.auth(email, password);
-         if (!token) {
+         if (token.status === 500) {
            return new ERROR().return(' Unauthorized');
          }
        }

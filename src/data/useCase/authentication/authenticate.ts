@@ -16,11 +16,11 @@ export default class Authenticade implements ClassAuthenticate {
 
  async auth(email: string, password: string ): Promise<error | success> {
    const account = await this.dbrepo.getOfDb(email);
-
    if (!account) {
      return new Error().return(' Invalid email/password');
    }
    const isEqual = await this.compare.compare(password, account.password);
+
    if (!isEqual) {
      return new Error().return(' Invalid email/password');
    }
@@ -29,7 +29,6 @@ export default class Authenticade implements ClassAuthenticate {
    if (!token) {
      return new Error().return(' Something is Wrong');
    }
-   console.log(token);
    return new Success().return(token);
  }
 }
