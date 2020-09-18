@@ -13,7 +13,7 @@ export default class FieldCompare implements Validation {
 
              validate(data: any): undefined | error {
                if (data[this.field] !== data[this.fieldtocompare]) {
-                 return new Error().return(`inválid confirm Password`);
+                 return new Error(400).return(`inválid confirm Password`);
                }
              }
 }

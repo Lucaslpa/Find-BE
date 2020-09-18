@@ -8,7 +8,7 @@ const routescontroller = new RoutesController;
 
 
 router.post('/signup', routescontroller.signup );
-router.get('/signup', routescontroller.getsignup );
+router.get('/test', routescontroller.getsignup );
 router.get('/login', routescontroller.login);
 
 

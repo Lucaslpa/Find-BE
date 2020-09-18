@@ -58,7 +58,7 @@ describe('Sign Up', () => {
 
   test('Should ensure  400/error if validation return error', async () => {
     const {signupcontroller, validatestub} = makeSignUpController();
-    jest.spyOn(validatestub, 'validate').mockReturnValue(new ERROR().return('any_error'));
+    jest.spyOn(validatestub, 'validate').mockReturnValue(new ERROR(400).return('any_error'));
     const data = {
       name: 'namehere',
       email: 'email_Invalid@gmail.com',
@@ -67,6 +67,6 @@ describe('Sign Up', () => {
     };
     const res = await signupcontroller.signUp(data);
 
-    expect(res).toEqual(new ERROR().return('any_error'));
+    expect(res).toEqual(new ERROR(400).return('any_error'));
   });
 });

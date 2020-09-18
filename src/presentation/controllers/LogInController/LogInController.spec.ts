@@ -75,19 +75,19 @@ describe('Login Controller ', () => {
 
     const res = await logincontroller.login(Data);
 
-    expect(res).toEqual(new ERROR().return(`${new Error()}`));
+    expect(res).toEqual(new ERROR(500).return(`${new Error()}`));
   });
 
 
   test('should return status error if  authenticate throws ', async () => {
     const {logincontroller, authenticate} = makeLoginController();
-    jest.spyOn( authenticate, 'auth' ).mockReturnValue(new Promise((resolve)=> resolve(new ERROR().return(' Unauthorized'))));
+    jest.spyOn( authenticate, 'auth' ).mockReturnValue(new Promise((resolve)=> resolve(new ERROR(401).return(' Unauthorized'))));
     const Data = makeData();
 
 
     const res = await logincontroller.login(Data);
 
-    expect(res).toEqual(new ERROR().return(' Unauthorized'));
+    expect(res).toEqual(new ERROR(401).return(' Unauthorized'));
   });
 });
 

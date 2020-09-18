@@ -24,7 +24,7 @@ describe('Composite', () => {
     };
     const res = compositeemailvalidator.validate(data);
 
-    expect(res).toEqual(new Error().return(`invalid email`));
+    expect(res).toEqual(new Error(400).return(`invalid email`));
   });
 
   test('should return email error if composite Email validator error ', () => {
@@ -35,18 +35,18 @@ describe('Composite', () => {
     };
     const res = compositefieldcompare.validate(data);
 
-    expect(res).toEqual(new Error().return(`inválid confirm Password`));
+    expect(res).toEqual(new Error(400).return(`inválid confirm Password`));
   });
 
   test('should return email error if composite Email validator error ', () => {
     const {compositefieldrequired} = makeComposite();
     const data = {
-      email: 'luca@gmail.com',
+      email: 'lucas@gmail.com',
       pssword: '213',
       passwordConfirm: '111',
     };
     const res = compositefieldrequired.validate(data);
 
-    expect(res).toEqual(new Error().return(`missing param name`));
+    expect(res).toEqual(new Error(400).return(`missing param name`));
   });
 });
