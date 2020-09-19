@@ -1,3 +1,5 @@
 export interface tokenrequest {
-     headers: any
+     headers: {
+          token?: string
+     }
 }

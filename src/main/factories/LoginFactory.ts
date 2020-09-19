@@ -2,7 +2,7 @@ import LoginController from '../../presentation/controllers/LogInController/Logi
 import EmailValiator from '../../utils/email-valitator/emailvalitador';
 import Auth from '../../data/useCase/authentication/authenticate';
 import DbRepo from '../../infra/db/sqlite/sqliteAccountRepo';
-import Token from '../../infra/token/jwtokenAdapter';
+import Token from '../../infra/token/jwtokenLoadTokenAdapter';
 import TypeORMrequire from '../../infra/db/typeorm/typesOrmQuerys';
 import Entity from '../../infra/db/sqlite/database/entity/Accounts.entity';
 import Compare from '../../infra/criptography/bcrypt.adapter';

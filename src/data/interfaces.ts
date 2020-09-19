@@ -35,3 +35,8 @@ export interface TokenGeneratorType {
 export interface CompareType {
      compare(value: string, hash: string): Promise<boolean>
  }
+
+export interface DecodeType {
+    decodeToken(token: string): Promise<any>
+
+ }

@@ -1,11 +1,16 @@
 import jwt from 'jsonwebtoken';
-import JwtokenAdapter from './jwtokenAdapter';
-
+import JwtokenAdapter from './jwtokenLoadTokenAdapter';
+import JwtDecodeToken from './jwtokenDecodeTokenAdapter';
+import key from '../../../.s';
 jest.mock('jsonwebtoken', () => ({
   async sign() : Promise<string> {
     return new Promise((resolve) => resolve('any_value'));
-  }}
+  },
 
+  async verify(token: string) : Promise<string> {
+    return new Promise((resolve) => resolve(''));
+  },
+}
 ));
 
 describe('jwtoken', () => {
@@ -22,5 +27,11 @@ describe('jwtoken', () => {
     const token = await jwtokenadapter.loadToken('any_value');
 
     expect(token).toEqual('any_value');
+  });
+
+  test('should return error decode tokens fail', async () => {
+    const jwtokenadapter = new JwtDecodeToken(key);
+    const token = await jwtokenadapter.decodeToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMyOSIsImlhdCI6MTYwMDQ3MjIzNX0.s3FDw7YY2FlLeBg542vIgM24v_yPen595QR54VnSVVY');
+    expect(token).toEqual({'error': 'Error: something wrong', 'status': 500});
   });
 });

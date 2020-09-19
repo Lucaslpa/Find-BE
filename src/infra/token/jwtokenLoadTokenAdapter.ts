@@ -1,8 +1,8 @@
-import {tokentype} from './jwtokeninterfaces';
+import {loadTokenType} from './jwtokeninterfaces';
 import jwt from 'jsonwebtoken';
 
 
-export default class Token implements tokentype {
+export default class LoadToken implements loadTokenType {
     private readonly privateKey: string
     constructor(privateKey:string) {
       this.privateKey = privateKey;

@@ -11,7 +11,6 @@ export default class FieldRequired implements Validation {
 
              validate(data: any): undefined | error {
                if (!data[this.field]) {
-                 console.log('doidera');
                  return new Error(400).return(`missing param ${this.field}`);
                }
              }
