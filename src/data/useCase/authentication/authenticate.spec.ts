@@ -1,8 +1,8 @@
 import Authenticate from './authenticate';
 import {DataAccountTypesRes} from '../../interfaces';
-import Compare from '../../../infra/criptography/bcrypt.adapter';
+import {Encrytp} from '../../../infra/criptography/bcrypt.adapter';
 
-import Error from '../../../domain/protocols/errors/ProcessError';
+import {Error} from '../../../domain/protocols/errors/ProcessError';
 
 const token = () => {
   class Token {
@@ -29,7 +29,7 @@ const dbRepo = () => {
 };
 const makeAuthenticate = () => {
   const tokenGenerator = token();
-  const compare = new Compare;
+  const compare = new Encrytp;
   const dbrepo = dbRepo();
   const authenticate = new Authenticate(dbrepo, tokenGenerator, compare);
   return {

@@ -1,7 +1,7 @@
 import CompositeEmailValidator from './Composite.email-validator';
 import CompositeFieldCompare from './Composite.fields-compare';
 import CompositeFieldRequired from './Composite.fields-required';
-import Error from '../../../domain/protocols/errors/ProcessError';
+import {Error} from '../../../domain/protocols/errors/ProcessError';
 import Emailvalidator from '../../../utils/email-valitator/emailvalitador';
 const makeComposite = () => {
   const emailvalidator = new Emailvalidator;

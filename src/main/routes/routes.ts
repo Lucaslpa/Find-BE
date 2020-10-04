@@ -12,7 +12,7 @@ const routescontroller = new RoutesController;
 
 router.post('/signup', routescontroller.signup );
 router.get('/test', middlewares.authMiddleware, routescontroller.getsignup );
-router.get('/login', routescontroller.login);
+router.post('/login', routescontroller.login);
 
 
 export default router;

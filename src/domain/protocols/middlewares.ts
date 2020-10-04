@@ -3,6 +3,4 @@ import {error, success} from '../../presentation/controllers/validators/interfac
 
 export interface Middleware {
      handle(req: string): Promise<error | success >
-
-
 }

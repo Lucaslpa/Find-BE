@@ -1,3 +1,4 @@
+import {erro} from '../domain/protocols/errors/ProcessError';
 export interface encrypt {
     encrypt(password: string): Promise<string>
 }
@@ -29,7 +30,7 @@ export interface DBrepoType {
  }
 
 export interface TokenGeneratorType {
-    loadToken(data: string) : Promise<string >
+    loadToken(data: string) : Promise<string | erro>
  }
 
 export interface CompareType {

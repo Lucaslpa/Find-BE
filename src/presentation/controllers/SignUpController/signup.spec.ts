@@ -1,9 +1,13 @@
 import SignUpController from './SignUp';
 import {ValidatorEmailTypes} from './interfaces';
-import AddAccount from '../../../domain/useCase/accountCreate';
 import {Validation, error} from '../validators/interfaces';
-import ERROR from '../../../domain/protocols/errors/ProcessError';
-
+import {Error} from '../../../domain/protocols/errors/ProcessError';
+import AddAccount from '../../../data/useCase/dbAddAccount/dbAddAccount';
+import {Encrytp} from '../../../infra/criptography/bcrypt.adapter';
+import {SqliteAccountRepo} from '../../../infra/db/sqlite/sqliteAccountRepo';
+import {Querys} from '../../../infra/db/Querys/typesOrmQuerys';
+import AccountEntity from '../../../infra/db/sqlite/database/entity/Accounts.entity';
+import connection from '../../../infra/db/ConnectionHelper';
 interface MakeTypes {
   emailValidator: ValidatorEmailTypes,
   signupcontroller: SignUpController,
@@ -27,7 +31,11 @@ const makeValidator = (): Validation => {
 };
 
 const makeSignUpController = (): MakeTypes => {
-  const addaccount = new AddAccount;
+  const encrypt = new Encrytp;
+  const entity = AccountEntity;
+  const querys = new Querys(entity);
+  const addaccountrepo = new SqliteAccountRepo(querys);
+  const addaccount = new AddAccount(encrypt, addaccountrepo);
   const validatestub = makeValidator();
   const emailValidator = new EmailValidator;
 
@@ -42,6 +50,14 @@ const makeSignUpController = (): MakeTypes => {
 
 
 describe('Sign Up', () => {
+  beforeAll(async ()=>{
+    await connection.create();
+  });
+
+  afterAll(async ()=>{
+    await connection.clear;
+    await connection.close();
+  });
   test('Should ensure  if validation is call with corret values', async () => {
     const {signupcontroller, validatestub} = makeSignUpController();
     const resSpy = jest.spyOn(validatestub, 'validate');
@@ -58,7 +74,7 @@ describe('Sign Up', () => {
 
   test('Should ensure  400/error if validation return error', async () => {
     const {signupcontroller, validatestub} = makeSignUpController();
-    jest.spyOn(validatestub, 'validate').mockReturnValue(new ERROR(400).return('any_error'));
+    jest.spyOn(validatestub, 'validate').mockReturnValue(new Error(400).return('any_error'));
     const data = {
       name: 'namehere',
       email: 'email_Invalid@gmail.com',
@@ -67,6 +83,6 @@ describe('Sign Up', () => {
     };
     const res = await signupcontroller.signUp(data);
 
-    expect(res).toEqual(new ERROR(400).return('any_error'));
+    expect(res).toEqual(new Error(400).return('any_error'));
   });
 });

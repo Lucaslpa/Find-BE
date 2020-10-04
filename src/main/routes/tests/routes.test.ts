@@ -27,9 +27,9 @@ describe('Routes', () => {
     };
     await supertest(app).post('/signup').send(data).expect(200)
         .then((res) => {
-          expect(res.body.account.id).toBeTruthy();
-          expect(res.body.account.name).toEqual(data.name);
-          expect(res.body.account.email).toEqual(data.email);
+          expect(res.body.body.id).toBeTruthy();
+          expect(res.body.body.name).toEqual(data.name);
+          expect(res.body.body.email).toEqual(data.email);
         });
   });
 });

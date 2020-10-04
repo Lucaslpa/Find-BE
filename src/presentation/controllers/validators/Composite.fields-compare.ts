@@ -1,4 +1,4 @@
-import Error from '../../../domain/protocols/errors/ProcessError';
+import {Error} from '../../../domain/protocols/errors/ProcessError';
 import {Validation, error} from './interfaces';
 
 
