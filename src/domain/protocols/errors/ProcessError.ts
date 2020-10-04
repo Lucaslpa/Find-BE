@@ -1,7 +1,12 @@
-export default class Error {
-  return(erro: string) {
+export interface erro {
+    status: number,
+    error: string
+}
+export class Error {
+  constructor( private readonly status: number) {}
+  return(erro: string): erro {
     return {
-      status: 400,
+      status: this.status,
       error: `Error:${erro}`,
     };
   }

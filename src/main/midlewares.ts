@@ -3,6 +3,6 @@ import cors from 'cors';
 
 export function midlewares(app : Express) {
   app.use(json());
-  app.use(cors());
+  app.use(cors({origin: '*'}));
   return app;
 }

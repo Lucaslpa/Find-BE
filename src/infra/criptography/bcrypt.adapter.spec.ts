@@ -1,9 +1,9 @@
-import BcryptAdapter from './bcrypt.adapter';
+import {Encrytp} from './bcrypt.adapter';
 import bcrypt from 'bcrypt';
 
 
 const makeBcryptAdapter = () => {
-  return new BcryptAdapter();
+  return new Encrytp();
 };
 
 describe('Encrypter', () => {

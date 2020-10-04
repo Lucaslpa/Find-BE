@@ -8,8 +8,8 @@ export interface SignUpTypesRequest {
  }
 
 export interface SignUpTypesResponse {
-  status?: number
-  account?: {
+  status: number
+  body?: {
     id: number
     name: string,
     email: string,

@@ -1,7 +1,8 @@
-import {encrypt, DataAccountTypes, DataAccountTypesRes, AddAccountRepositoryTypes, dbAccountTypes} from '../../interfaces';
+import {encrypt, DataAccountTypes, DataAccountTypesRes, AddAccountRepositoryTypes} from '../../interfaces';
+import {AddAccount} from '../../../domain/useCase/accountCreate';
 
 
-class dbAddAccount implements dbAccountTypes {
+class dbAddAccount implements AddAccount {
     private readonly encrypt: encrypt
     private readonly addaccountrepository: AddAccountRepositoryTypes
     constructor(encrypt: encrypt, addaccountrepository: AddAccountRepositoryTypes) {

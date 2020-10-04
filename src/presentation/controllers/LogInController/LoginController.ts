@@ -1,5 +1,5 @@
 import {accountLoginTypes, LoginControllerTypes} from './interfaces';
-import ERROR from '../../../domain/protocols/errors/ProcessError';
+import {Error} from '../../../domain/protocols/errors/ProcessError';
 import {ValidatorEmailTypes} from '../../../utils/email-valitator/interfaces';
 import {ClassAuthenticate} from '../../../domain/useCase/authentication.interface';
 import {error, success} from '../../../presentation/controllers/validators/interfaces';
@@ -21,25 +21,26 @@ class LoginController implements LoginControllerTypes {
        for ( let i = 0; i < fields.length; i++) {
          const field = fields[i];
          if (!field) {
-           return new ERROR().return(` ${fieldsName[i]} not inserted`);
+           return new Error(400).return(` ${fieldsName[i]} not inserted`);
          }
        }
        if (email) {
          const isValid = await this.emailvalidator.isValid(email);
          if (!isValid) {
-           return new ERROR().return(' Email is invalid');
+           return new Error(400).return(' Email is invalid');
          }
        }
        let token: error | success;
        if (email && password) {
          token = await this.auth.auth(email, password);
+         console.log(token);
          if (token.status === 500) {
-           return new ERROR().return(' Unauthorized');
+           return new Error(401).return(' Unauthorized');
          }
        }
        return new Promise((resolve) => resolve(token));
      } catch (error) {
-       return new ERROR().return(`${error}`);
+       return new Error(500).return(`${error}`);
      }
    }
 }

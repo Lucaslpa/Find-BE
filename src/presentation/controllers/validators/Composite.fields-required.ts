@@ -1,5 +1,5 @@
-import Error from '../../../domain/protocols/errors/ProcessError';
-import {Validation, error} from './interfaces';
+import {erro, Error} from '../../../domain/protocols/errors/ProcessError';
+import {Validation} from './interfaces';
 
 
 export default class FieldRequired implements Validation {
@@ -9,9 +9,9 @@ export default class FieldRequired implements Validation {
                this.field = field;
              }
 
-             validate(data: any): undefined | error {
+             validate(data: any): undefined | erro {
                if (!data[this.field]) {
-                 return new Error().return(`missing param ${this.field}`);
+                 return new Error(400).return(`missing param ${this.field}`);
                }
              }
 }

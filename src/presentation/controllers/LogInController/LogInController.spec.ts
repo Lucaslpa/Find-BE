@@ -1,7 +1,7 @@
 import LoginController from './LoginController';
 import EmailValidator from '../../../utils/email-valitator/emailvalitador';
 import {ClassAuthenticate} from '../../../domain/useCase/authentication.interface';
-import ERROR from '../../../domain/protocols/errors/ProcessError';
+import {Error} from '../../../domain/protocols/errors/ProcessError';
 import {error, success} from '../../../presentation/controllers/validators/interfaces';
 
 
@@ -68,26 +68,26 @@ describe('Login Controller ', () => {
   test('should return status error if  email validator throws ', async () => {
     const {logincontroller, emailvalidator} = makeLoginController();
     jest.spyOn(emailvalidator, 'isValid').mockImplementationOnce(() => {
-      throw new Error();
+      return false;
     });
     const Data = makeData();
 
 
     const res = await logincontroller.login(Data);
 
-    expect(res).toEqual(new ERROR().return(`${new Error()}`));
+    expect(res).toEqual(new Error(400).return(' Email is invalid'));
   });
 
 
   test('should return status error if  authenticate throws ', async () => {
     const {logincontroller, authenticate} = makeLoginController();
-    jest.spyOn( authenticate, 'auth' ).mockReturnValue(new Promise((resolve)=> resolve(new ERROR().return(' Unauthorized'))));
+    jest.spyOn( authenticate, 'auth' ).mockReturnValue(new Promise((resolve)=> resolve(new Error(401).return(' Unauthorized'))));
     const Data = makeData();
 
 
     const res = await logincontroller.login(Data);
 
-    expect(res).toEqual(new ERROR().return(' Unauthorized'));
+    expect(res).toEqual(new Error(401).return(' Unauthorized'));
   });
 });
 

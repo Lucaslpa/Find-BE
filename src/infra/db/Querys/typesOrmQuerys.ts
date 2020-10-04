@@ -1,18 +1,19 @@
 import {getRepository} from 'typeorm';
 import {QueryRepositoryTypes} from './interfaces';
-class QueryRepository implements QueryRepositoryTypes {
+export class Querys implements QueryRepositoryTypes {
  private readonly repo : any
- constructor(repo: any) {
-   this.repo = repo;
+ constructor(entity: any) {
+   this.repo = entity;
  }
- async getEntity(Data: any): Promise<any> {
-   const Repository = await getRepository(this.repo);
+ async get(Data: any): Promise<any> {
+   const Repository = getRepository(this.repo);
    const res = await Repository.findOne({where: {
      email: Data,
    }});
 
    return res;
  }
+
 
  async create(Data: any): Promise<any> {
    const Repository = await getRepository(this.repo);
@@ -26,6 +27,3 @@ class QueryRepository implements QueryRepositoryTypes {
    return Promise.resolve(res);
  }
 }
-
-
-export default QueryRepository;

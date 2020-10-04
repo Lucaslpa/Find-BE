@@ -25,7 +25,8 @@ class SignUpController implements SignUpControllerTypes {
      const account = await this.addaccount.add(newdata);
 
      return {
-       account: {
+       status: 200,
+       body: {
          id: account.id,
          name: account.name,
          email: account.email,

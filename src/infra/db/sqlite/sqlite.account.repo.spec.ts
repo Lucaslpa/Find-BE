@@ -1,7 +1,7 @@
 
 require('dotenv').config();
-import TypeormQuery from '../typeorm/typesOrmQuerys';
-import SqliteAccountRepo from './sqliteAccountRepo';
+import {Querys} from '../Querys/typesOrmQuerys';
+import {SqliteAccountRepo} from './sqliteAccountRepo';
 import connection from '../ConnectionHelper';
 import entityAccount from './database/entity/Accounts.entity';
 
@@ -22,8 +22,8 @@ describe('DB', () => {
 
 
   function makeConnection() {
-    const typeormQuery = new TypeormQuery(entityAccount);
-    const sqliteAccountRepo = new SqliteAccountRepo(typeormQuery);
+    const querys = new Querys(entityAccount);
+    const sqliteAccountRepo = new SqliteAccountRepo(querys);
 
     return {
       sqliteAccountRepo,
