@@ -1,9 +1,9 @@
-import ValidationComposite from '../../presentation/controllers/validators/Composite.Validation';
+import ValidationComposite from '../../presentation/controllers/CompositeValidators/Composite.Validation';
 import signUpCompositeValidation from './signup-validation-composite';
-import {Validation} from '../../presentation/controllers/validators/interfaces';
-import FieldRequired from '../../presentation/controllers/validators/Composite.fields-required';
-import FieldCompare from '../../presentation/controllers/validators/Composite.fields-compare';
-import EmailValidator from '../../presentation/controllers/validators/Composite.email-validator';
+import {Validation} from '../../presentation/controllers/CompositeValidators/interfaces';
+import FieldRequired from '../../presentation/controllers/CompositeValidators/Composite.fields-required';
+import FieldCompare from '../../presentation/controllers/CompositeValidators/Composite.fields-compare';
+import EmailValidator from '../../presentation/controllers/CompositeValidators/Composite.email-validator';
 import Emailvalidator from '../../utils/email-valitator/emailvalitador';
 
 jest.mock('../../presentation/controllers/validators/Composite.Validation');

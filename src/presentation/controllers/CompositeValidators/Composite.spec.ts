@@ -3,16 +3,21 @@ import CompositeFieldCompare from './Composite.fields-compare';
 import CompositeFieldRequired from './Composite.fields-required';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
 import Emailvalidator from '../../../utils/email-valitator/emailvalitador';
+import {MinimalCaracteresC} from './Composite.MinCaractere';
+import {MinimalCaracteres} from '../../../utils/minmalCaracteres-validator/minimalCaracteres';
 const makeComposite = () => {
   const emailvalidator = new Emailvalidator;
+  const minimalcaracteresname = new MinimalCaracteres(3);
   const compositeemailvalidator = new CompositeEmailValidator('email', emailvalidator );
   const compositefieldcompare = new CompositeFieldCompare('password', 'passwordConfirm');
   const compositefieldrequired = new CompositeFieldRequired('name');
+  const minimalcaracteres = new MinimalCaracteresC('name', minimalcaracteresname );
 
   return {
     compositeemailvalidator,
     compositefieldrequired,
     compositefieldcompare,
+    minimalcaracteres,
   };
 };
 
@@ -48,5 +53,16 @@ describe('Composite', () => {
     const res = compositefieldrequired.validate(data);
 
     expect(res).toEqual(new Error(400).return(`missing param name`));
+  });
+
+  test('should return error if composite minCaracteres validator error ', () => {
+    const {minimalcaracteres} = makeComposite();
+    const name ='ju';
+    const res = minimalcaracteres.validate(name);
+
+    expect(res).toEqual({
+      error: 'Error: name Minimal caracteres invalid ',
+      status: 400,
+    });
   });
 });

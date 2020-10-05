@@ -2,7 +2,7 @@ import LoginController from './LoginController';
 import EmailValidator from '../../../utils/email-valitator/emailvalitador';
 import {ClassAuthenticate} from '../../../domain/useCase/authentication.interface';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
-import {error, success} from '../../../presentation/controllers/validators/interfaces';
+import {error, success} from '../CompositeValidators/interfaces';
 
 
 class Authenticate implements ClassAuthenticate {

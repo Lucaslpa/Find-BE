@@ -17,6 +17,7 @@
     ],
     "rules": {
         "max-len": ["off", { "comments": 200 }], 
-        "require-jsdoc":"off"
+        "require-jsdoc":"off",
+        "linebreak-style": "off"
     } 
 }

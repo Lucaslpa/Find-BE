@@ -1,7 +1,7 @@
 import {ClassAuthenticate} from '../../../domain/useCase/authentication.interface';
 import {DBrepoType, TokenGeneratorType, CompareType} from '../../interfaces';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
-import {error, success} from '../../../presentation/controllers/validators/interfaces';
+import {error, success} from '../../../presentation/controllers/CompositeValidators/interfaces';
 import Success from '../../../domain/protocols/succes/ProcessSucces';
 
 export default class Authenticade implements ClassAuthenticate {

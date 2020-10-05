@@ -2,7 +2,7 @@ import {accountLoginTypes, LoginControllerTypes} from './interfaces';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
 import {ValidatorEmailTypes} from '../../../utils/email-valitator/interfaces';
 import {ClassAuthenticate} from '../../../domain/useCase/authentication.interface';
-import {error, success} from '../../../presentation/controllers/validators/interfaces';
+import {error, success} from '../CompositeValidators/interfaces';
 
 
 class LoginController implements LoginControllerTypes {
@@ -33,7 +33,6 @@ class LoginController implements LoginControllerTypes {
        let token: error | success;
        if (email && password) {
          token = await this.auth.auth(email, password);
-         console.log(token);
          if (token.status === 500) {
            return new Error(401).return(' Unauthorized');
          }

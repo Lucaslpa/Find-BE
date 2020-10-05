@@ -1,11 +1,11 @@
 
-import ValidationComposite from '../../presentation/controllers/validators/Composite.Validation';
-import {Validation} from '../../presentation/controllers/validators/interfaces';
-import FieldRequired from '../../presentation/controllers/validators/Composite.fields-required';
-import FieldCompare from '../../presentation/controllers/validators/Composite.fields-compare';
+import ValidationComposite from '../../presentation/controllers/CompositeValidators/Composite.Validation';
+import {Validation} from '../../presentation/controllers/CompositeValidators/interfaces';
+import FieldRequired from '../../presentation/controllers/CompositeValidators/Composite.fields-required';
+import FieldCompare from '../../presentation/controllers/CompositeValidators/Composite.fields-compare';
 import Emailvalidator from '../../utils/email-valitator/emailvalitador';
-import EmailValidator from '../../presentation/controllers/validators/Composite.email-validator';
-const validate = new Emailvalidator;
+import EmailValidator from '../../presentation/controllers/CompositeValidators/Composite.email-validator';
+const emailValidator = new Emailvalidator;
 
 const SignUpValidatioComposite = (): ValidationComposite => {
   const validations: Validation[] = [];
@@ -13,7 +13,7 @@ const SignUpValidatioComposite = (): ValidationComposite => {
     validations.push(new FieldRequired(fields));
   }
   validations.push(new FieldCompare('password', 'passwordConfirm'));
-  validations.push(new EmailValidator('email', validate));
+  validations.push(new EmailValidator('email', emailValidator));
 
   return new ValidationComposite(validations);
 };

@@ -1,7 +1,7 @@
 import {Middleware} from '../../../domain/protocols/middlewares';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
 import SUCCESS from '../../../domain/protocols/succes/ProcessSucces';
-import {error, success} from '../../../presentation/controllers/validators/interfaces';
+import {error, success} from '../CompositeValidators/interfaces';
 import {loadaccounttokenTypes} from './MiddlewareAuthInterface';
 
 

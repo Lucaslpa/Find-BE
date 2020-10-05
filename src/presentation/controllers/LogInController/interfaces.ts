@@ -1,4 +1,4 @@
-import {error, success} from '../validators/interfaces';
+import {error, success} from '../CompositeValidators/interfaces';
 export interface accountLoginTypes {
              email?: string,
             password?: string

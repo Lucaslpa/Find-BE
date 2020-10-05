@@ -1,6 +1,6 @@
 import SignUpController from './SignUp';
 import {ValidatorEmailTypes} from './interfaces';
-import {Validation, error} from '../validators/interfaces';
+import {Validation, error} from '../CompositeValidators/interfaces';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
 import AddAccount from '../../../data/useCase/dbAddAccount/dbAddAccount';
 import {Encrytp} from '../../../infra/criptography/bcrypt.adapter';
