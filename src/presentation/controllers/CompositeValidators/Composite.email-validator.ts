@@ -15,7 +15,7 @@ export default class emailValidator implements Validation {
              validate(data: any): undefined | error {
                const emailIsValid = this.emailValidator.isValid(data[this.field]);
                if (!emailIsValid) {
-                 return new Error(400).return(`invalid ${this.field}`);
+                 return new Error(400).return(` ${this.field} is invalid`);
                }
              }
 }

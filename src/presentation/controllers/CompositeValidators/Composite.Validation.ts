@@ -1,7 +1,7 @@
 import {Validation, error} from './interfaces';
 
 
-export default class CompositeValidation implements Validation {
+export class CompositeValidation implements Validation {
      private readonly validation : Validation[]
      constructor(validation: Validation[]) {
        this.validation = validation;

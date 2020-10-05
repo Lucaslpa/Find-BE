@@ -3,7 +3,7 @@ import EmailValidator from '../../../utils/email-valitator/emailvalitador';
 import {ClassAuthenticate} from '../../../domain/useCase/authentication.interface';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
 import {error, success} from '../CompositeValidators/interfaces';
-
+import {loginValidatioComposite} from '../../../main/factories/login-valiation-composite';
 
 class Authenticate implements ClassAuthenticate {
   async auth(email: string, password: string ): Promise<error | success> {
@@ -15,7 +15,7 @@ class Authenticate implements ClassAuthenticate {
 function makeLoginController() {
   const emailvalidator = new EmailValidator;
   const authenticate = new Authenticate;
-  return {logincontroller: new LoginController(emailvalidator, authenticate), emailvalidator: emailvalidator,
+  return {logincontroller: new LoginController(loginValidatioComposite(), authenticate), emailvalidator: emailvalidator,
     authenticate: authenticate,
   };
 }
@@ -61,25 +61,11 @@ describe('Login Controller ', () => {
 
     const res = await logincontroller.login(Data);
     expect(res.status).toEqual(400);
-    expect(res.error).toEqual('Error: Email is invalid');
+    expect(res.error).toEqual('Error: email is invalid');
   });
 
 
-  test('should return status error if  email validator throws ', async () => {
-    const {logincontroller, emailvalidator} = makeLoginController();
-    jest.spyOn(emailvalidator, 'isValid').mockImplementationOnce(() => {
-      return false;
-    });
-    const Data = makeData();
-
-
-    const res = await logincontroller.login(Data);
-
-    expect(res).toEqual(new Error(400).return(' Email is invalid'));
-  });
-
-
-  test('should return status error if  authenticate throws ', async () => {
+  test('should return status error if  authenticate fails ', async () => {
     const {logincontroller, authenticate} = makeLoginController();
     jest.spyOn( authenticate, 'auth' ).mockReturnValue(new Promise((resolve)=> resolve(new Error(401).return(' Unauthorized'))));
     const Data = makeData();

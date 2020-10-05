@@ -8,9 +8,7 @@ class Routes {
     return res.status(response.status).json(response);
   }
   async login(req: Request, res: Response) {
-    console.log(req);
     const response = await logincontrollerfacotry().login(req.body);
-    console.log(response);
     return res.status(response.status).json(response);
   }
   getsignup(req: Request, res: Response) {
