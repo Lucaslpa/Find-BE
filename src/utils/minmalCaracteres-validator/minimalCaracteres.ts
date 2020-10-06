@@ -1,4 +1,4 @@
-import {MinimalCaracteresTypes} from './minimalCaracteresInterface';
+import {MinimalCaracteresTypes} from '../../domain/utils/minimalCaracteresInterface';
 import Validator from 'validator';
 
 export class MinimalCaracteres implements MinimalCaracteresTypes {

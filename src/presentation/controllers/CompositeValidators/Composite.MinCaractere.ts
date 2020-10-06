@@ -1,6 +1,6 @@
 import {Validation} from './interfaces';
 import {Error, erro} from '../../../domain/protocols/errors/ProcessError';
-import {MinimalCaracteresTypes} from '../../../utils/minmalCaracteres-validator/minimalCaracteresInterface';
+import {MinimalCaracteresTypes} from '../../../domain/utils/minimalCaracteresInterface';
 export class MinimalCaracteresC implements Validation {
   constructor( private field: string, private minimalValidator: MinimalCaracteresTypes ) {}
   validate(data: any): undefined | erro {

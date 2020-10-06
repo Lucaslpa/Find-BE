@@ -1,4 +1,4 @@
-import {DataAccountTypesRes, DataAccountTypes} from '../data/interfaces';
+import {DataAccountTypesRes, DataAccountTypes} from '../../data/interfaces';
 export interface AddAccountInsert {
     name?: string,
     email?: string,
