@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import {LoadToken} from './jwtokenLoadTokenAdapter';
 import JwtDecodeToken from './jwtokenDecodeTokenAdapter';
-import PrivateKey from '../../../.s';
+import PrivateKey from '../../../.authenticateKey';
 jest.mock('jsonwebtoken', () => ({
   async sign() : Promise<string> {
     return new Promise((resolve) => resolve('any_value'));

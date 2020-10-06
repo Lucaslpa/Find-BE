@@ -7,7 +7,7 @@ import Entity from '../../infra/db/sqlite/database/entity/Accounts.entity';
 import {Encrytp} from '../../infra/criptography/bcrypt.adapter';
 import {loginValidatioComposite} from './login-valiation-composite';
 require('dotenv').config();
-import s from '../../../.s';
+import s from '../../../.authenticateKey';
 
 export default function LoginFactory() {
   const secretKey = s;
