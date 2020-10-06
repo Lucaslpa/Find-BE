@@ -28,6 +28,6 @@ describe('take user', () => {
     });
     const email = 'lucaslpa@gmail.com';
     const res = await sut.get(email);
-    expect(res).toEqual(new Error(500).return(' Something wrong'));
+    expect(res).toEqual(new Error(404).return(' Not found'));
   });
 });

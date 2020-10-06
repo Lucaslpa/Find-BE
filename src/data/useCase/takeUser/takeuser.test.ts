@@ -22,10 +22,10 @@ describe('take user', () => {
     await connection.close();
   });
 
-  test('should get a user in data base', async () => {
+  test('should return a account if user is finded', async () => {
     const {sut} = makeSUT();
-    const emails = 'lucaslpa@gmail.com';
+    const emails = 'lucas@gmail.com';
     const res = await sut.get(emails);
-    console.log('ddddddddddddddddddddddddddd', res);
+    expect(res).toHaveProperty('id');
   });
 });

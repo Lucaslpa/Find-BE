@@ -9,8 +9,8 @@ export class NodeMailerAdapter implements transporterAdapter {
       port: 465,
       secure: true,
       auth: {
-        user: '1lucaslpa12345@gmail.com',
-        pass: '40036711lA',
+        user: 'NoReplyEncontre@gmail.com',
+        pass: 'lcua9443432z*qqqafc',
       },
     };
     const transporter = nodemailer.createTransport(smtpConfig);
