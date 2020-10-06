@@ -1,14 +1,14 @@
 import {ClassAuthenticate} from '../../../domain/useCase/authentication.interface';
-import {DBrepoType, TokenGeneratorType, CompareType} from '../../interfaces';
+import {DBrepositoryQuerys, TokenGeneratorType, CompareType} from '../../interfaces';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
 import {error, success} from '../../../presentation/controllers/CompositeValidators/interfaces';
 import Success from '../../../domain/protocols/succes/ProcessSucces';
 
 export default class Authenticade implements ClassAuthenticate {
- private readonly dbrepo: DBrepoType
+ private readonly dbrepo: DBrepositoryQuerys
  private readonly tokengenerator: TokenGeneratorType
  private readonly compare: CompareType
- constructor(dbrepo: DBrepoType, tokengeneretor: TokenGeneratorType, compare: CompareType ) {
+ constructor(dbrepo: DBrepositoryQuerys, tokengeneretor: TokenGeneratorType, compare: CompareType ) {
    this.dbrepo = dbrepo;
    this.tokengenerator = tokengeneretor;
    this.compare = compare;

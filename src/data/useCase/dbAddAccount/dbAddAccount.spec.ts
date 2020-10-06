@@ -1,5 +1,5 @@
 import AddAccount from './dbAddAccount';
-import {DataAccountTypesRes, AddAccountRepositoryTypes, DataAccountTypes, encrypt} from '../../interfaces';
+import {DataAccountTypesRes, DBrepositoryQuerys, DataAccountTypes, encrypt} from '../../interfaces';
 
 class Encrytp implements encrypt {
   async encrypt(password: string): Promise<string> {
@@ -8,13 +8,22 @@ class Encrytp implements encrypt {
   }
 }
 
-class AddAccountRepository implements AddAccountRepositoryTypes {
+class AddAccountRepository implements DBrepositoryQuerys {
   async addToDB(Account: DataAccountTypes): Promise<DataAccountTypesRes> {
     const AccountInserted = {
       id: 1,
       email: Account.email,
       name: Account.name,
       password: Account.password,
+    };
+    return new Promise((resolve) => resolve(AccountInserted));
+  }
+  async getOfDb(email: string): Promise<DataAccountTypesRes> {
+    const AccountInserted = {
+      id: 1,
+      email: '',
+      name: '',
+      password: '',
     };
     return new Promise((resolve) => resolve(AccountInserted));
   }

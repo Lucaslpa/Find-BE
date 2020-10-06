@@ -1,8 +1,8 @@
-import {AddAccountRepositoryTypes, DataAccountTypes, DataAccountTypesRes} from
+import {DBrepositoryQuerys, DataAccountTypes, DataAccountTypesRes} from
   '../../../data/interfaces';
 import {QueryRepositoryTypes} from '../Querys/interfaces';
 
-export class SqliteAccountRepo implements AddAccountRepositoryTypes {
+export class SqliteAccountRepo implements DBrepositoryQuerys {
   private readonly Querys: QueryRepositoryTypes
 
   constructor(Querys: QueryRepositoryTypes ) {

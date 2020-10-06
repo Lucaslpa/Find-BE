@@ -3,6 +3,13 @@ export interface encrypt {
     encrypt(password: string): Promise<string>
 }
 
+export interface DBrepositoryQuerys {
+    addToDB(Account: DataAccountTypes): Promise<DataAccountTypesRes>
+    getOfDb(email: string): Promise<DataAccountTypesRes>
+
+}
+
+
 export interface DataAccountTypes {
    name: string,
    email: string,
@@ -17,17 +24,11 @@ export interface DataAccountTypesRes {
     password: string
  }
 
-export interface AddAccountRepositoryTypes {
-    addToDB(Account: DataAccountTypes): Promise<DataAccountTypesRes>
- }
 
 export interface dbAccountTypes {
     add(DataAccount: DataAccountTypes ): Promise<DataAccountTypesRes>
  }
 
-export interface DBrepoType {
-    getOfDb(email: string): Promise<DataAccountTypesRes>
- }
 
 export interface TokenGeneratorType {
     loadToken(data: string) : Promise<string | erro>

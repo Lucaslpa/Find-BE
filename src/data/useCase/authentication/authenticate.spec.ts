@@ -16,6 +16,14 @@ const token = () => {
 
 const dbRepo = () => {
   class DBrepo {
+    addToDB() {
+      return Promise.resolve({
+        id: 10,
+        name: 'lucas',
+        email: 'lucas@gmail.com',
+        password: '222',
+      });
+    }
     getOfDb(email: string): Promise<DataAccountTypesRes> {
       return Promise.resolve({
         id: 10,

@@ -1,4 +1,4 @@
-{
+{    
     "type": "sqlite",
     "database": "./src/infra/db/sqlite/database/my.db.sql", 
     "entities": ["./src/infra/db/sqlite/database/entity/*"], 

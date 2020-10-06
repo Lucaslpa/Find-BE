@@ -57,7 +57,7 @@ describe('Composite', () => {
 
   test('should return error if composite minCaracteres validator error ', () => {
     const {minimalcaracteres} = makeComposite();
-    const data = { 
+    const data = {
       email: 'lucas@gmail.com',
       password: '23',
     };

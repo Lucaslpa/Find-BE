@@ -6,7 +6,6 @@ export class MinimalCaracteres implements MinimalCaracteresTypes {
 
 
   isValid(data: string) : boolean {
-    console.log(data);
     const res = Validator.isLength(data, {min: this.min});
     return res;
   }
