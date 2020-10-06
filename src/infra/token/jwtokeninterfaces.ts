@@ -2,7 +2,7 @@ export {DataAccountTypesRes} from '../../data/interfaces';
 import {erro} from '../../domain/protocols/errors/ProcessError';
 
 export interface loadTokenType {
-     loadToken(data: string) : Promise<string | erro>,
+     loadToken(id: string, email: string) : Promise<string | erro>,
 }
 
 export interface decodeTokenType {

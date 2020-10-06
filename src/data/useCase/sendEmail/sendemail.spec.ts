@@ -1,16 +1,23 @@
 import {SendEmail} from './sendemail';
+import {contentData} from '../../../domain/utils/transporterEmailAdapter';
 class NodeMailerAdapterStub {
-  send(email: string): Promise<any> {
+  send(content: contentData ): Promise<any> {
     return new Promise( (resolve) => resolve('ok'));
   }
 }
 
+class GenerateContenteStub {
+  generate(email: string ): Promise<any> {
+    return Promise.resolve('');
+  }
+}
 
 const makeSut = () => {
   const sender = new NodeMailerAdapterStub;
+  const generateContent = new GenerateContenteStub;
 
   return {
-    sut: new SendEmail(sender),
+    sut: new SendEmail(sender, generateContent),
     sender,
   };
 };
