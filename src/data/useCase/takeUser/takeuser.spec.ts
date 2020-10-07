@@ -24,7 +24,7 @@ describe('take user', () => {
   test('should ensure getOfDb return error if fails ', async () => {
     const {sut, userrepo} = makeSUT();
     jest.spyOn(userrepo, 'getOfDb').mockImplementationOnce((): any => {
-      return '';
+      return new Error(404).return(' Not found');
     });
     const email = 'lucaslpa@gmail.com';
     const res = await sut.get(email);

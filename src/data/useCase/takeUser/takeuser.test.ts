@@ -18,7 +18,6 @@ describe('take user', () => {
   });
 
   afterAll(async ()=>{
-    await connection.clear;
     await connection.close();
   });
 

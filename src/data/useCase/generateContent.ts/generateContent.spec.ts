@@ -30,7 +30,13 @@ describe('Generate Content', () => {
     const spy = jest.spyOn( getaccount, 'get');
     const email = 'matheus@hotmail.com';
     sut.generate(email);
-
+    const data = {
+      from: 'Encontre group',
+      to: 'l1.lucas333@hotmail.com',
+      subject: 'New testes',
+      text: 'Hello lucas. We are testing!!',
+      html: ' <strong> Redefinir Senha </strong> <h1> localhost:200/424124?token <h1> ',
+    };
     expect(spy).toBeCalledWith(email);
   });
 });

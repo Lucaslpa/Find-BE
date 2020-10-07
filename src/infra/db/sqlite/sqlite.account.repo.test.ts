@@ -12,7 +12,6 @@ describe('DB', () => {
   });
 
   afterAll(async ()=>{
-    await connection.clear;
     await connection.close();
   });
 
@@ -31,7 +30,7 @@ describe('DB', () => {
   }
 
 
-  test('Should return account with success', async () => {
+  test('Should create account with success', async () => {
     const {sqliteAccountRepo} = makeConnection();
 
     const data = {
@@ -57,9 +56,21 @@ describe('DB', () => {
     };
 
     const account = await sqliteAccountRepo.getOfDb(data.email);
+    console.log(account);
     expect(account.id).toBeTruthy();
     expect(account.name).toEqual(data.name);
     expect(account.email).toEqual(data.email);
     expect(account.password).toBeTruthy();
+  });
+  test('Should edit a account from db', async () => {
+    const {sqliteAccountRepo} = makeConnection();
+
+    const data = {
+      email: 'lucas@gmail.com',
+      password: '11111',
+    };
+
+    const account = await sqliteAccountRepo.editDB(data);
+    console.log(account);
   });
 });

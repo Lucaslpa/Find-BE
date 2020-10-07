@@ -26,4 +26,12 @@ export class Querys implements QueryRepositoryTypes {
    }
    return Promise.resolve(res);
  }
+
+ async edit(data: any ): Promise<any> {
+   console.log(data);
+   const Repository = await getRepository(this.repo);
+   const account = await Repository.query(`UPDATE account SET password = ${data.password} where email = "${data.email}"`);
+   console.log(account);
+   return account;
+ }
 }

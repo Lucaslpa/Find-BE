@@ -1,6 +1,10 @@
 import {DBrepositoryQuerys, DataAccountTypes, DataAccountTypesRes} from
   '../../../data/interfaces';
 import {QueryRepositoryTypes} from '../Querys/interfaces';
+interface account{
+  email: string
+  password: string
+}
 
 export class SqliteAccountRepo implements DBrepositoryQuerys {
   private readonly Querys: QueryRepositoryTypes
@@ -16,6 +20,11 @@ export class SqliteAccountRepo implements DBrepositoryQuerys {
 
   async getOfDb(email: string): Promise<DataAccountTypesRes> {
     const res = await this.Querys.get(email);
+    return Promise.resolve(res);
+  }
+
+  async editDB(data: account ): Promise<DataAccountTypesRes> {
+    const res = await this.Querys.edit(data);
     return Promise.resolve(res);
   }
 }

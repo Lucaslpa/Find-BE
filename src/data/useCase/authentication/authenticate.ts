@@ -25,7 +25,7 @@ export default class Authenticade implements ClassAuthenticate {
      return new Error(400).return(' Invalid email/password');
    }
 
-   const token = await this.tokengenerator.loadToken(String(account.id));
+   const token = await this.tokengenerator.loadToken(String(account.id), account.email);
    if (!token) {
      return new Error(500).return(' Something is Wrong');
    }

@@ -8,7 +8,6 @@ export class TakeUserFromDB implements takeUser {
   async get(email: string ): Promise<DataAccountTypesRes> {
     try {
       const res = await this.getUserUserRepository.getOfDb(email);
-      console.log(res);
       return new Promise( (resolve) => resolve(res));
     } catch {
       return {

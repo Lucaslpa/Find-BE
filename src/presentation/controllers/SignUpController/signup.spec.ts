@@ -55,7 +55,6 @@ describe('Sign Up', () => {
   });
 
   afterAll(async ()=>{
-    await connection.clear;
     await connection.close();
   });
   test('Should ensure  if validation is call with corret values', async () => {

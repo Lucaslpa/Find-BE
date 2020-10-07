@@ -98,6 +98,6 @@ describe('authenticate', () => {
     };
 
     await authenticate.auth(data.email, data.password);
-    expect(spy).toHaveBeenCalledWith('10');
+    expect(spy).toHaveBeenCalledWith('10', 'lucas@gmail.com');
   });
 });

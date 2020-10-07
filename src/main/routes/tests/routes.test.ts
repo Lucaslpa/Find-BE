@@ -13,7 +13,6 @@ describe('Routes', () => {
   });
 
   beforeEach(async () => {
-    await connection.clear();
   });
 
 

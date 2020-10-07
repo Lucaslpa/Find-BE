@@ -31,7 +31,7 @@ export interface dbAccountTypes {
 
 
 export interface TokenGeneratorType {
-    loadToken(data: string) : Promise<string | erro>
+    loadToken(id: string, email: string) : Promise<string | erro>
  }
 
 export interface CompareType {
