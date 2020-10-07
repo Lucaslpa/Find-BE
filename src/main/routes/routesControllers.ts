@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
-import signUpControllerFactory from '../factories/signupFactory';
-import logincontrollerfacotry from '../factories/LoginFactory';
+import signUpControllerFactory from '../factories/controllers/signupFactory';
+import logincontrollerfacotry from '../factories/controllers/LoginFactory';
 import {sendEmailFactory} from '../factories/sendEmailFactory';
 class Routes {
   async signup(req: Request, res: Response) {

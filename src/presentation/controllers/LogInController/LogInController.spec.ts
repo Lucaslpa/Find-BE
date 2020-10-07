@@ -3,7 +3,7 @@ import EmailValidator from '../../../utils/email-valitator/emailvalitador';
 import {ClassAuthenticate} from '../../../domain/useCase/authentication.interface';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
 import {error, success} from '../CompositeValidators/interfaces';
-import {loginValidatioComposite} from '../../../main/factories/login-valiation-composite';
+import {loginValidatioComposite} from '../../../main/factories/validatorsComposite/login-valiation-composite';
 
 class Authenticate implements ClassAuthenticate {
   async auth(email: string, password: string ): Promise<error | success> {

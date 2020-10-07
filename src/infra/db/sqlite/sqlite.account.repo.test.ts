@@ -4,7 +4,7 @@ import {Querys} from '../Querys/typeOrmQuerysAccount';
 import {SqliteAccountRepo} from './sqliteAccountRepo';
 import connection from '../ConnectionHelper';
 import entityAccount from './database/entity/Accounts.entity';
-
+import {editfields} from '../../../domain/useCase/updateAccount';
 
 describe('DB', () => {
   beforeAll(async ()=>{
@@ -66,9 +66,12 @@ describe('DB', () => {
 
     const data = {
       email: 'joaozinho22@gmail.com',
-      password: 'novasenha',
+      modifie: {
+        editField: editfields.password,
+        dataEditField: 'novasssssssssssssssssssenha',
+      },
     };
 
-    const account = await sqliteAccountRepo.editDB(data);
+    await sqliteAccountRepo.editDB(data);
   });
 });

@@ -28,7 +28,7 @@ export class Querys implements QueryRepositoryTypes {
  async edit(data: any ): Promise<any> {
    const Repository = await getRepository(this.repo);
    const account = await Repository.query(`UPDATE account
-   SET password = '${data.password}'
+   SET ${data.modifie.editField} = '${data.modifie.dataEditField}'
    WHERE email = '${data.email}'`);
    return account;
  }

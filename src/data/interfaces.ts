@@ -1,4 +1,7 @@
 import {erro} from '../domain/protocols/errors/ProcessError';
+import {dataAccountupdate} from '../domain/useCase/updateAccount';
+
+
 export interface encrypt {
     encrypt(password: string): Promise<string>
 }
@@ -10,7 +13,7 @@ export interface account{
 export interface DBrepositoryQuerys {
     addToDB(Account: DataAccountTypes): Promise<DataAccountTypesRes>
     getOfDb(email: string): Promise<DataAccountTypesRes>
-    editDB(data: account ): Promise<DataAccountTypesRes>
+    editDB(data: dataAccountupdate ): Promise<DataAccountTypesRes>
 }
 
 
