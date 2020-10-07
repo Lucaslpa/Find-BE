@@ -33,7 +33,7 @@ describe('Auth middleware', () => {
 
 
     const response = await authmiddleware.handle(header.token);
-    expect(response).toEqual({status: 401, error: 'Error: Unauthorized'});
+    expect(response).toEqual({status: 401, error: 'Unauthorized'});
   });
 
   test('should ensure load is called with correct value', async () => {
@@ -59,7 +59,7 @@ describe('Auth middleware', () => {
 
 
     const res = await authmiddleware.handle(header.token);
-    expect(res).toEqual({status: 401, error: 'Error: Unauthorized'});
+    expect(res).toEqual({status: 401, error: 'Unauthorized'});
   });
 
   test('if load return a user return 200/authorized', async () => {

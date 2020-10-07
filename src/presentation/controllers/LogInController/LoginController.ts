@@ -25,7 +25,7 @@ class LoginController implements LoginControllerTypes {
        if (email && password) {
          token = await this.auth.auth(email, password);
          if (token.status === 401) {
-           return new Error(401).return(' Unauthorized');
+           return new Error(401).return('Unauthorized');
          }
        }
        return new Promise((resolve) => resolve(token));

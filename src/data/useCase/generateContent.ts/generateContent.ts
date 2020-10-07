@@ -13,13 +13,12 @@ export class GenerateContent implements generatecontent {
     }
     const token = await this.loadToken.loadToken(account.email, String(account.id) );
     const link = `http://localhost:2500/changePassword?user=${token}`;
-    console.log(link);
     const data = {
       from: 'Encontre group',
       to: `${email}`,
       subject: 'New testes',
       text: 'Hello lucas. We are testing!!',
-      html: ` <strong> Redefinir Senha </strong> <h3> ${link} <h3> `,
+      html: `<strong> Redefinir Senha </strong> <h3> ${link} <h3> `,
     };
     return data;
   }

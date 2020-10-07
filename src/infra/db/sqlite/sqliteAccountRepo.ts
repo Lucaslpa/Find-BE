@@ -1,7 +1,7 @@
 import {DBrepositoryQuerys, DataAccountTypes, DataAccountTypesRes} from
   '../../../data/interfaces';
 import {QueryRepositoryTypes} from '../Querys/interfaces';
-interface account{
+export interface account{
   email: string
   password: string
 }
@@ -24,6 +24,7 @@ export class SqliteAccountRepo implements DBrepositoryQuerys {
   }
 
   async editDB(data: account ): Promise<DataAccountTypesRes> {
+    console.log('dataaaaaaaaaaaaaaaaaa', data);
     const res = await this.Querys.edit(data);
     return Promise.resolve(res);
   }

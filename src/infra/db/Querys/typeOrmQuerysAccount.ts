@@ -30,7 +30,6 @@ export class Querys implements QueryRepositoryTypes {
    const account = await Repository.query(`UPDATE account
    SET password = '${data.password}'
    WHERE email = '${data.email}'`);
-   console.log('return ', account);
    return account;
  }
 }

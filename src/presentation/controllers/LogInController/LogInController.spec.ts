@@ -38,7 +38,7 @@ describe('Login Controller ', () => {
     };
     const res = await logincontroller.login(data);
     expect(res.status).toEqual(400);
-    expect(res.error).toEqual('Error: email not inserted');
+    expect(res.error).toEqual('email not inserted');
   });
 
   test('should return status 400/error if  password is not provided ', async () => {
@@ -48,7 +48,7 @@ describe('Login Controller ', () => {
     };
     const res = await logincontroller.login(data);
     expect(res.status).toEqual(400);
-    expect(res.error).toEqual('Error: password not inserted');
+    expect(res.error).toEqual('password not inserted');
   });
 
 
@@ -61,19 +61,19 @@ describe('Login Controller ', () => {
 
     const res = await logincontroller.login(Data);
     expect(res.status).toEqual(400);
-    expect(res.error).toEqual('Error: email is invalid');
+    expect(res.error).toEqual('email is invalid');
   });
 
 
   test('should return status error if  authenticate fails ', async () => {
     const {logincontroller, authenticate} = makeLoginController();
-    jest.spyOn( authenticate, 'auth' ).mockReturnValue(new Promise((resolve)=> resolve(new Error(401).return(' Unauthorized'))));
+    jest.spyOn(authenticate, 'auth').mockReturnValue(new Promise((resolve)=> resolve(new Error(401).return('Unauthorized'))));
     const Data = makeData();
 
 
     const res = await logincontroller.login(Data);
 
-    expect(res).toEqual(new Error(401).return(' Unauthorized'));
+    expect(res).toEqual(new Error(401).return('Unauthorized'));
   });
 });
 

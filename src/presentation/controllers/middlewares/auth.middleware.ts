@@ -13,11 +13,11 @@ export class AuthMiddleware implements Middleware {
     if (token) {
       const accountOfTokenExist = await this.loadaccounttoken.load(token);
       if (!accountOfTokenExist) {
-        return new Promise((resolve) => resolve(new Error(401).return(' Unauthorized')));
+        return new Promise((resolve) => resolve(new Error(401).return('Unauthorized')));
       }
       return new SUCCESS(200).return(accountOfTokenExist);
     }
 
-    return new Promise((resolve) => resolve(new Error(401).return(' Unauthorized'))); ;
+    return new Promise((resolve) => resolve(new Error(401).return('Unauthorized'))); ;
   }
 }

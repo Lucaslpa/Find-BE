@@ -14,11 +14,11 @@ export default class DecodeToken implements decodeTokenType {
       try {
         const data = await jwt.verify(token, this.privateKey);
         if (!data) {
-          return new Error(401).return(' Unauthorized');
+          return new Error(401).return('Unauthorized');
         }
         return new Promise((resolve) => resolve(data));
       } catch (err) {
-        return new Error(401).return(' Unauthorized');
+        return new Error(401).return('Unauthorized');
       }
     }
 }

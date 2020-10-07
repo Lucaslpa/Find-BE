@@ -7,7 +7,7 @@ export class MinimalCaracteresC implements Validation {
     const res = this.minimalValidator.isValid(data[this.field]);
 
     if (!res) {
-      return new Error(400).return(` ${this.field} Minimal caracteres invalid `);
+      return new Error(400).return(`${this.field} Minimal caracteres invalid`);
     }
   }
 }

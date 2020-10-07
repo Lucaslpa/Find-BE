@@ -14,7 +14,7 @@ describe('nodemailer Adapter', () => {
       to: 'l1.lucas333@hotmail.com',
       subject: 'New testes',
       text: 'Hello lucas. We are testing!!',
-      html: ' <strong> Redefinir Senha </strong> <h1> localhost:200/424124?token <h1> ',
+      html: '<strong> Redefinir Senha </strong> <h1> localhost:200/424124?token <h1> ',
     };
     const res = await sut.send(data);
     expect(res.accepted).toBeTruthy();

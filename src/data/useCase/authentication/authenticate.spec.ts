@@ -1,7 +1,7 @@
 import Authenticate from './authenticate';
 import {DataAccountTypesRes} from '../../interfaces';
 import {Encrytp} from '../../../infra/criptography/bcrypt.adapter';
-
+import {account} from '../../../infra/db/sqlite/sqliteAccountRepo';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
 
 const token = () => {
@@ -25,6 +25,14 @@ const dbRepo = () => {
       });
     }
     getOfDb(email: string): Promise<DataAccountTypesRes> {
+      return Promise.resolve({
+        id: 10,
+        name: 'lucas',
+        email: 'lucas@gmail.com',
+        password: '222',
+      });
+    }
+    editDB(data: account ): Promise<DataAccountTypesRes> {
       return Promise.resolve({
         id: 10,
         name: 'lucas',
@@ -67,7 +75,7 @@ describe('authenticate', () => {
     };
 
     const res = await authenticate.auth(data.email, data.password);
-    expect(res).toEqual(new Error(400).return(' Invalid email/password'));
+    expect(res).toEqual(new Error(400).return('Invalid email/password'));
   });
 
 
@@ -79,7 +87,7 @@ describe('authenticate', () => {
     };
 
     const res = await authenticate.auth(data.email, data.password);
-    expect(res).toEqual(new Error(400).return(' Invalid email/password'));
+    expect(res).toEqual(new Error(400).return('Invalid email/password'));
   });
 
   test('Ensure loadToken be called with correct data', async () => {

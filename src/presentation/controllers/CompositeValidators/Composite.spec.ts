@@ -29,7 +29,7 @@ describe('Composite', () => {
     };
     const res = compositeemailvalidator.validate(data);
 
-    expect(res).toEqual(new Error(400).return(` email is invalid`));
+    expect(res).toEqual(new Error(400).return(`email is invalid`));
   });
 
   test('should return email error if composite Email validator error ', () => {
@@ -52,7 +52,7 @@ describe('Composite', () => {
     };
     const res = compositefieldrequired.validate(data);
 
-    expect(res).toEqual(new Error(400).return(' name not inserted'));
+    expect(res).toEqual(new Error(400).return('name not inserted'));
   });
 
   test('should return error if composite minCaracteres validator error ', () => {
@@ -64,8 +64,8 @@ describe('Composite', () => {
     const res = minimalcaracteres.validate(data);
 
     expect(res).toEqual({
-      error: 'Error: password Minimal caracteres invalid ',
       status: 400,
+      error: 'password Minimal caracteres invalid',
     });
   });
 });

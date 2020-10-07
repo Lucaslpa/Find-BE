@@ -7,7 +7,7 @@ export class Error {
   return(erro: string): erro {
     return {
       status: this.status,
-      error: `Error:${erro}`,
+      error: erro,
     };
   }
 }

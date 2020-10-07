@@ -11,7 +11,7 @@ export default class FieldRequired implements Validation {
 
              validate(data: any): undefined | erro {
                if (!data[this.field]) {
-                 return new Error(400).return(` ${this.field} not inserted`);
+                 return new Error(400).return(`${this.field} not inserted`);
                }
              }
 }

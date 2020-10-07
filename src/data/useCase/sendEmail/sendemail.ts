@@ -8,7 +8,6 @@ export class SendEmail implements sendEmail {
               private generateContent: generatecontent,
   ) {}
   async send(email: string): Promise<any> {
-    console.log('FOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOI');
     const content = await this.generateContent.generate(email);
     console.log(content);
     if (content===400) {
