@@ -2,7 +2,7 @@ import SignUpController from '../../presentation/controllers/SignUpController/Si
 import DbAddAccount from '../../data/useCase/dbAddAccount/dbAddAccount';
 import {Encrytp} from '../../infra/criptography/bcrypt.adapter';
 import {SqliteAccountRepo} from '../../infra/db/sqlite/sqliteAccountRepo';
-import {Querys} from '../../infra/db/Querys/typesOrmQuerys';
+import {Querys} from '../../infra/db/Querys/typeOrmQuerysAccount';
 import entityAccount from '../../infra/db/sqlite/database/entity/Accounts.entity';
 import signUpValidationComposite from './signup-validation-composite';
 

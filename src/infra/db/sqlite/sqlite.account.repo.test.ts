@@ -1,6 +1,6 @@
 
 require('dotenv').config();
-import {Querys} from '../Querys/typesOrmQuerys';
+import {Querys} from '../Querys/typeOrmQuerysAccount';
 import {SqliteAccountRepo} from './sqliteAccountRepo';
 import connection from '../ConnectionHelper';
 import entityAccount from './database/entity/Accounts.entity';
@@ -56,7 +56,6 @@ describe('DB', () => {
     };
 
     const account = await sqliteAccountRepo.getOfDb(data.email);
-    console.log(account);
     expect(account.id).toBeTruthy();
     expect(account.name).toEqual(data.name);
     expect(account.email).toEqual(data.email);
@@ -66,11 +65,10 @@ describe('DB', () => {
     const {sqliteAccountRepo} = makeConnection();
 
     const data = {
-      email: 'lucas@gmail.com',
-      password: '11111',
+      email: 'joaozinho22@gmail.com',
+      password: 'novasenha',
     };
 
     const account = await sqliteAccountRepo.editDB(data);
-    console.log(account);
   });
 });

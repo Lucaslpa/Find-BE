@@ -2,7 +2,7 @@ import LoginController from '../../presentation/controllers/LogInController/Logi
 import Auth from '../../data/useCase/authentication/authenticate';
 import {SqliteAccountRepo} from '../../infra/db/sqlite/sqliteAccountRepo';
 import {LoadToken} from '../../infra/token/jwtokenLoadTokenAdapter';
-import {Querys} from '../../infra/db/Querys/typesOrmQuerys';
+import {Querys} from '../../infra/db/Querys/typeOrmQuerysAccount';
 import Entity from '../../infra/db/sqlite/database/entity/Accounts.entity';
 import {Encrytp} from '../../infra/criptography/bcrypt.adapter';
 import {loginValidatioComposite} from './login-valiation-composite';

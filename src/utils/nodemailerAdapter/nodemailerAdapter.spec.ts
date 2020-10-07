@@ -17,6 +17,5 @@ describe('nodemailer Adapter', () => {
       html: ' <strong> Redefinir Senha </strong> <h1> localhost:200/424124?token <h1> ',
     };
     const res = await sut.send(data);
-    console.log(res);
   });
 });
