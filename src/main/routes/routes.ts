@@ -11,7 +11,7 @@ const routescontroller = new RoutesController;
 
 
 router.post('/signup', routescontroller.signup );
-router.get('/test', middlewares.authMiddleware, routescontroller.getUser );
+router.post('/sendEmail', routescontroller.sendEmail );
 router.post('/login', routescontroller.login);
 
 

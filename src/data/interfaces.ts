@@ -2,11 +2,15 @@ import {erro} from '../domain/protocols/errors/ProcessError';
 export interface encrypt {
     encrypt(password: string): Promise<string>
 }
+export interface account{
+    email: string
+    password: string
+  }
 
 export interface DBrepositoryQuerys {
     addToDB(Account: DataAccountTypes): Promise<DataAccountTypesRes>
     getOfDb(email: string): Promise<DataAccountTypesRes>
-
+    editDB(data: account ): Promise<DataAccountTypesRes>
 }
 
 

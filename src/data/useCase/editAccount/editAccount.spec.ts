@@ -1,11 +1,7 @@
 import {SqliteAccountRepo} from '../../../infra/db/sqlite/sqliteAccountRepo';
 import {Querys} from '../../../infra/db/Querys/typeOrmQuerysAccount';
 import AccountEntity from '../../../infra/db/sqlite/database/entity/Accounts.entity';
-class editAccountStub {
-  editDB() {
-
-  }
-}
+import {EditAccount} from './editAccount';
 
 
 const makeSuts = () => {
@@ -13,7 +9,7 @@ const makeSuts = () => {
   const querys = new Querys(entity);
   const accountQuerys = new SqliteAccountRepo(querys);
   return {
-    sut: new EditAccount,
+    sut: new EditAccount(accountQuerys),
     accountQuerys,
   };
 };

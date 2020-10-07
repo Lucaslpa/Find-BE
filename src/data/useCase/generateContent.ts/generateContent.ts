@@ -6,10 +6,14 @@ export class GenerateContent implements generatecontent {
          private readonly getAccountFromDB : takeUser,
          private readonly loadToken : loadTokenType,
   ) {}
-  async generate(email: string ): Promise<contentData> {
+  async generate(email: string ): Promise<contentData | number> {
     const account = await this.getAccountFromDB.get(email);
+    if (!account) {
+      return 400;
+    }
     const token = await this.loadToken.loadToken(account.email, String(account.id) );
     const link = `http://localhost:2500/changePassword?user=${token}`;
+    console.log(link);
     const data = {
       from: 'Encontre group',
       to: `${email}`,

@@ -7,9 +7,16 @@ export class SendEmail implements sendEmail {
   constructor(private transporter: transporterAdapter,
               private generateContent: generatecontent,
   ) {}
-  async send(email: string): Promise<void> {
+  async send(email: string): Promise<any> {
+    console.log('FOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOI');
     const content = await this.generateContent.generate(email);
-    this.transporter.send(content);
-    return;
+    console.log(content);
+    if (content===400) {
+      return content;
+    }
+    const res = await this.transporter.send(content);
+    console.log(res);
+
+    return 200;
   }
 }

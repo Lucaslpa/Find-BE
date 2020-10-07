@@ -13,8 +13,6 @@ export class Querys implements QueryRepositoryTypes {
 
    return res;
  }
-
-
  async create(Data: any): Promise<any> {
    const Repository = await getRepository(this.repo);
    const res = await Repository.insert(Data);
@@ -32,6 +30,7 @@ export class Querys implements QueryRepositoryTypes {
    const account = await Repository.query(`UPDATE account
    SET password = '${data.password}'
    WHERE email = '${data.email}'`);
+   console.log('return ', account);
    return account;
  }
 }
