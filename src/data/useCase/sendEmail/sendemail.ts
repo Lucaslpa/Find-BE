@@ -9,13 +9,10 @@ export class SendEmail implements sendEmail {
   ) {}
   async send(email: string): Promise<any> {
     const content = await this.generateContent.generate(email);
-    console.log(content);
     if (content===400) {
       return content;
     }
     const res = await this.transporter.send(content);
-    console.log(res);
-
     return 200;
   }
 }

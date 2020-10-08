@@ -3,7 +3,7 @@ import {decodeTokenType} from './jwtokeninterfaces';
 import {Error} from '../../domain/protocols/errors/ProcessError';
 
 
-export default class DecodeToken implements decodeTokenType {
+export default class VerifyToken implements decodeTokenType {
     private readonly privateKey: string
     constructor(privateKey:string) {
       this.privateKey = privateKey;

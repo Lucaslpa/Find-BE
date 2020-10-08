@@ -6,6 +6,7 @@ import AccountEntity from '../../../infra/db/sqlite/database/entity/Accounts.ent
 import {Encrytp} from '../../../infra/criptography/bcrypt.adapter';
 import connection from '../../../infra/db/ConnectionHelper';
 import {EditAccount} from '../../../data/useCase/editAccount/editAccount';
+import {DecodeToken} from '../../../infra/token/jwtDecode';
 
 
 const makeSuts = () => {
@@ -14,8 +15,9 @@ const makeSuts = () => {
   const accountQuerys = new SqliteAccountRepo(querys);
   const encrypt = new Encrytp;
   const updater = new EditAccount(accountQuerys);
+  const decoder = new DecodeToken;
   return {
-    sut: new EditAccountController(updater, accountQuerys, encrypt),
+    sut: new EditAccountController(updater, accountQuerys, encrypt, decoder),
     accountQuerys,
     encrypt,
   };
@@ -31,12 +33,15 @@ describe('Edic Account Controller', () => {
     await connection.close();
   });
   test('should ensure return error if passwords is the same', async () => {
-    const {sut, encrypt} = makeSuts();
+    const {sut, encrypt, accountQuerys} = makeSuts();
+    jest.spyOn(accountQuerys, 'getOfDb').mockImplementationOnce(():any => {
+      return true;
+    });
     jest.spyOn(encrypt, 'compare').mockImplementationOnce(():any => {
       return true;
     });
     const account = {
-      email: 'lucas@gmail.com',
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc2MiIsImVtYWlsIjoibHVjYXNscGExMjM0NUBnbWFpbC5jb20iLCJpYXQiOjE2MDIwNDc2Nzh9.ZJzNBA7S3wUqrKRisBUGJsCoFH-kG7HEzMnG4zP52XM',
       modifie: 'novaSenha',
     };
     const res = await sut.edit(account);
