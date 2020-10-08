@@ -7,14 +7,11 @@ export class GenerateContent implements generatecontent {
          private readonly loadToken : loadTokenType,
   ) {}
   async generate(email: string ): Promise<contentData | number> {
-    console.log('emaeeeeeeeeeeeeeeeeeeeeeeeeeeeel', email);
     const account = await this.getAccountFromDB.get(email);
-    console.log('accooooooooooooooooount', account);
     if (!account) {
       return 400;
     }
     const token = await this.loadToken.loadToken(String(account.id), account.email);
-    console.log(token);
     const link = `http://localhost:2500/editAccount?token=${token}`;
     const data = {
       from: 'Encontre group',

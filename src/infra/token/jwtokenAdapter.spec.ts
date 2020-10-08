@@ -49,7 +49,6 @@ describe('jwtoken', () => {
   test('should decode a token', async () => {
     const jwtokenadapter = new DecodeToken;
     const infos = await jwtokenadapter.decodeToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFsdWNhc2xwYTEyMzQ1QGdtYWlsLmNvbSIsImVtYWlsIjoiMTAzMCIsImlhdCI6MTYwMjExOTMyN30.jLtQYZeDSNi0aEpmzRBvr122ff1YhJLTcUupk0m-NjA');
-    console.log('decodador porra ', infos);
     expect(infos.id).toBeTruthy();
     expect(infos.email).toBeTruthy();
   });

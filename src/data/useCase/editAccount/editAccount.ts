@@ -14,7 +14,10 @@ export class EditAccount implements updateAccount {
     };
     try {
       await this.querysToDB.editDB(newaccount);
-      return 200;
+      return {
+        status: 200,
+        response: 'ok',
+      };
     } catch (err) {
       console.log(err);
     }

@@ -19,8 +19,6 @@ class Routes {
   }
 
   async editAccount(req: Request, res: Response) {
-    console.log(req.body);
-    console.log('param', req.query);
     const {token} = await req.query!;
     const {password} = req.body;
     const data = {
@@ -28,8 +26,9 @@ class Routes {
       modifie: password,
     };
 
+
     const response = await editAccountFactory().edit(data);
-    return res.status(response).json();
+    return res.status(response.status).json(response);
   }
 }
 
