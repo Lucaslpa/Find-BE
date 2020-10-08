@@ -12,7 +12,7 @@ export class SendEmail implements sendEmail {
     if (content===400) {
       return content;
     }
-    const res = await this.transporter.send(content);
+    await this.transporter.send(content);
     return 200;
   }
 }

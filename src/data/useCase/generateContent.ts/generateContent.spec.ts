@@ -4,9 +4,9 @@ import {LoadToken} from '../../../infra/token/jwtokenLoadTokenAdapter';
 class GetaccountStub {
   get(email: string ): Promise<DataAccountTypesRes> {
     return new Promise((resolve) => resolve({
-      id: 0,
-      name: '',
-      email: '',
+      id: 999,
+      name: '1lucaslpa12345@gmail.com',
+      email: '1lucaslpa12345@gmail.com',
       password: '',
     }));
   }
@@ -28,7 +28,7 @@ describe('Generate Content', () => {
   test('ensure take account is called with correct value', () => {
     const {sut, getaccount} = makeSuts();
     const spy = jest.spyOn( getaccount, 'get');
-    const email = 'matheus@hotmail.com';
+    const email = '1lucaslpa12345@gmail.com';
     sut.generate(email);
     expect(spy).toBeCalledWith(email);
   });

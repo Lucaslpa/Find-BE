@@ -49,7 +49,7 @@ describe('DataBase add account', () => {
     const {addaccount} = makedbAddAcount();
     const data = {
       name: 'name',
-      email: 'email@gmail.com',
+      email: '1lucaslpa12345@gmail.com',
       password: 'password',
     };
     const res = await addaccount.add(data);

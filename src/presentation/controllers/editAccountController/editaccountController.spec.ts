@@ -7,6 +7,7 @@ import {Encrytp} from '../../../infra/criptography/bcrypt.adapter';
 import connection from '../../../infra/db/ConnectionHelper';
 import {EditAccount} from '../../../data/useCase/editAccount/editAccount';
 import {DecodeToken} from '../../../infra/token/jwtDecode';
+import {MinimalCaracteres} from '../../../utils/minmalCaracteres-validator/minimalCaracteres';
 
 
 const makeSuts = () => {
@@ -16,8 +17,9 @@ const makeSuts = () => {
   const encrypt = new Encrytp;
   const updater = new EditAccount(accountQuerys);
   const decoder = new DecodeToken;
+  const validatorpassword = new MinimalCaracteres(6);
   return {
-    sut: new EditAccountController(updater, accountQuerys, encrypt, decoder),
+    sut: new EditAccountController(updater, accountQuerys, encrypt, decoder, validatorpassword),
     accountQuerys,
     encrypt,
   };

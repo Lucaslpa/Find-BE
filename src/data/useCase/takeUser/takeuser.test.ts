@@ -23,8 +23,9 @@ describe('take user', () => {
 
   test('should return a account if user is finded', async () => {
     const {sut} = makeSUT();
-    const emails = 'lucas@gmail.com';
+    const emails = '1lucaslpa12345@gmail.com';
     const res = await sut.get(emails);
+    console.log('CONTA ENCONTRADA', res);
     expect(res).toHaveProperty('id');
   });
 });
