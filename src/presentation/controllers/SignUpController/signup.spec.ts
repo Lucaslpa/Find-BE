@@ -4,7 +4,7 @@ import {Validation, error} from '../CompositeValidators/interfaces';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
 import AddAccount from '../../../data/useCase/dbAddAccount/dbAddAccount';
 import {Encrytp} from '../../../infra/criptography/bcrypt.adapter';
-import {SqliteAccountRepo} from '../../../infra/db/sqlite/sqliteAccountRepo';
+import {SqliteAccountRepo} from '../../../infra/db/sqlite/accountRepo/sqliteAccountRepo';
 import {Querys} from '../../../infra/db/Querys/typeOrmQuerysAccount';
 import AccountEntity from '../../../infra/db/sqlite/database/entity/Accounts.entity';
 import connection from '../../../infra/db/ConnectionHelper';

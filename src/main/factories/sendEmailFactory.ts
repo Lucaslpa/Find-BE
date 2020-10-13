@@ -4,7 +4,7 @@ import accountsendingemailconfig from '../../../.accountSenderEmail';
 import {GenerateContent} from '../../data/useCase/generateContent.ts/generateContent';
 import {TakeUserFromDB} from '../../data/useCase/takeUser/takeuser';
 import {LoadToken} from '../../infra/token/jwtokenLoadTokenAdapter';
-import {SqliteAccountRepo} from '../../infra/db/sqlite/sqliteAccountRepo';
+import {SqliteAccountRepo} from '../../infra/db/sqlite/accountRepo/sqliteAccountRepo';
 import privatekey from '../../../.recuperarSenhaKey';
 import {Querys} from '../../infra/db/Querys/typeOrmQuerysAccount';
 import accountentity from '../../infra/db/sqlite/database/entity/Accounts.entity';

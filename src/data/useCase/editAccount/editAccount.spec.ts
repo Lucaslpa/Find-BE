@@ -1,4 +1,4 @@
-import {SqliteAccountRepo} from '../../../infra/db/sqlite/sqliteAccountRepo';
+import {SqliteAccountRepo} from '../../../infra/db/sqlite/accountRepo/sqliteAccountRepo';
 import {Querys} from '../../../infra/db/Querys/typeOrmQuerysAccount';
 import AccountEntity from '../../../infra/db/sqlite/database/entity/Accounts.entity';
 import {EditAccount} from './editAccount';

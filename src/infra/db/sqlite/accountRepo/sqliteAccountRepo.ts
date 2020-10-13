@@ -1,7 +1,7 @@
 import {DBrepositoryQuerys, DataAccountTypes, DataAccountTypesRes} from
-  '../../../data/interfaces';
-import {QueryRepositoryTypes} from '../Querys/interfaces';
-import {dataAccountupdate} from '../../../domain/useCase/updateAccount';
+  '../../../../data/interfaces';
+import {QueryRepositoryTypes} from '../../Querys/interfaces';
+import {dataAccountupdate} from '../../../../domain/useCase/updateAccount';
 export interface account{
   email: string
   password: string

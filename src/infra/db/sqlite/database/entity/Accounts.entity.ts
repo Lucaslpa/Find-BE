@@ -4,7 +4,7 @@ import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
   @Entity()
 export default class Account {
       @PrimaryGeneratedColumn()
-      id?: number;
+      id?: string;
 
       @Column()
       name?: string;

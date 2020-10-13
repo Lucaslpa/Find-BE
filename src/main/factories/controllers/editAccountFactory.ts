@@ -1,6 +1,6 @@
 import {EditAccountController} from '../../../presentation/controllers/editAccountController/editaccountController';
 import {EditAccount} from '../../../data/useCase/editAccount/editAccount';
-import {SqliteAccountRepo} from '../../../infra/db/sqlite/sqliteAccountRepo';
+import {SqliteAccountRepo} from '../../../infra/db/sqlite/accountRepo/sqliteAccountRepo';
 import {Encrytp} from '../../../infra/criptography/bcrypt.adapter';
 import {Querys} from '../../../infra/db/Querys/typeOrmQuerysAccount';
 import entityAccount from '../../../infra/db/sqlite/database/entity/Accounts.entity';

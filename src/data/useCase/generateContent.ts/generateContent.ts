@@ -12,11 +12,11 @@ export class GenerateContent implements generatecontent {
       return 400;
     }
     const token = await this.loadToken.loadToken(String(account.id), account.email);
-    const link = `http://localhost:2500/editAccount?token=${token}`;
+    const link = `http://localhost:3000/editPassword?token=${token}`;
     const data = {
       from: 'Encontre group',
       to: `${email}`,
-      subject: 'New testes',
+      subject: 'Link para teste',
       text: 'Hello lucas. We are testing!!',
       html: `<strong> Redefinir Senha </strong> <h3> ${link} <h3> `,
     };

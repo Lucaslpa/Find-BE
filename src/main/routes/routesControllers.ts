@@ -9,17 +9,20 @@ class Routes {
     return res.status(response.status).json(response);
   }
   async login(req: Request, res: Response) {
+    console.log(req);
     const response = await logincontrollerfacotry().login(req.body);
+    console.log(response);
     return res.status(response.status).json(response);
   }
   async sendEmail(req: Request, res: Response) {
     const {email} = req.body;
     const resp = await sendEmailFactory().send(email);
+
     return res.status(resp).json();
   }
 
   async editAccount(req: Request, res: Response) {
-    const {token} = await req.query!;
+    const {token} = await req.body;
     const {password} = req.body;
     const data = {
       token: String(token) || 'a',

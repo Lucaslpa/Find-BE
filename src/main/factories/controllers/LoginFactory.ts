@@ -1,6 +1,6 @@
 import LoginController from '../../../presentation/controllers/LogInController/LoginController';
 import Auth from '../../../data/useCase/authentication/authenticate';
-import {SqliteAccountRepo} from '../../../infra/db/sqlite/sqliteAccountRepo';
+import {SqliteAccountRepo} from '../../../infra/db/sqlite/accountRepo/sqliteAccountRepo';
 import {LoadToken} from '../../../infra/token/jwtokenLoadTokenAdapter';
 import {Querys} from '../../../infra/db/Querys/typeOrmQuerysAccount';
 import Entity from '../../../infra/db/sqlite/database/entity/Accounts.entity';

@@ -1,10 +1,10 @@
 
 require('dotenv').config();
-import {Querys} from '../Querys/typeOrmQuerysAccount';
+import {Querys} from '../../Querys/typeOrmQuerysAccount';
 import {SqliteAccountRepo} from './sqliteAccountRepo';
-import connection from '../ConnectionHelper';
-import entityAccount from './database/entity/Accounts.entity';
-import {editfields} from '../../../domain/useCase/updateAccount';
+import connection from '../../ConnectionHelper';
+import entityAccount from '../database/entity/Accounts.entity';
+import {editfields} from '../../../../domain/useCase/updateAccount';
 
 describe('DB', () => {
   beforeAll(async ()=>{

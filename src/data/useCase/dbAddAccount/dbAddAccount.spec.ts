@@ -1,7 +1,7 @@
 import AddAccount from './dbAddAccount';
 import {encrypt} from '../../interfaces';
 import {Querys} from '../../../infra/db/Querys/typeOrmQuerysAccount';
-import {SqliteAccountRepo} from '../../../infra/db/sqlite/sqliteAccountRepo';
+import {SqliteAccountRepo} from '../../../infra/db/sqlite/accountRepo/sqliteAccountRepo';
 import accountentity from '../../../infra/db/sqlite/database/entity/Accounts.entity';
 import connection from '../../../infra/db/ConnectionHelper';
 

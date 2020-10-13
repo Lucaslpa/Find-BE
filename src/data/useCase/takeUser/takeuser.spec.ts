@@ -1,5 +1,5 @@
 import {TakeUserFromDB} from './takeuser';
-import {SqliteAccountRepo} from '../../../infra/db/sqlite/sqliteAccountRepo';
+import {SqliteAccountRepo} from '../../../infra/db/sqlite/accountRepo/sqliteAccountRepo';
 import {Querys} from '../../../infra/db/Querys/typeOrmQuerysAccount';
 import userEntity from '../../../infra/db/sqlite/database/entity/Accounts.entity';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
