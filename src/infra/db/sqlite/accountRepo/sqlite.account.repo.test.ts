@@ -1,10 +1,10 @@
 
 require('dotenv').config();
-import {Querys} from '../Querys/typesOrmQuerys';
+import {Querys} from '../../Querys/typeOrmQuerysAccount';
 import {SqliteAccountRepo} from './sqliteAccountRepo';
-import connection from '../ConnectionHelper';
-import entityAccount from './database/entity/Accounts.entity';
-
+import connection from '../../ConnectionHelper';
+import entityAccount from '../database/entity/Accounts.entity';
+import {editfields} from '../../../../domain/useCase/updateAccount';
 
 describe('DB', () => {
   beforeAll(async ()=>{
@@ -12,7 +12,6 @@ describe('DB', () => {
   });
 
   afterAll(async ()=>{
-    await connection.clear;
     await connection.close();
   });
 
@@ -31,7 +30,7 @@ describe('DB', () => {
   }
 
 
-  test('Should return account with success', async () => {
+  test('Should create account with success', async () => {
     const {sqliteAccountRepo} = makeConnection();
 
     const data = {
@@ -61,5 +60,18 @@ describe('DB', () => {
     expect(account.name).toEqual(data.name);
     expect(account.email).toEqual(data.email);
     expect(account.password).toBeTruthy();
+  });
+  test('Should edit a account from db', async () => {
+    const {sqliteAccountRepo} = makeConnection();
+
+    const data = {
+      email: 'joaozinho22@gmail.com',
+      modifie: {
+        editField: editfields.password,
+        dataEditField: 'novasssssssssssssssssssenha',
+      },
+    };
+
+    await sqliteAccountRepo.editDB(data);
   });
 });

@@ -8,9 +8,9 @@ export class LoadToken implements loadTokenType {
       this.privateKey = privateKey;
     }
 
-    async loadToken(data: string) : Promise<string | erro> {
+    async loadToken(id: string, email: string) : Promise<string | erro> {
       try {
-        const token = jwt.sign({id: data}, this.privateKey);
+        const token = jwt.sign({id, email}, this.privateKey);
         if (!token) {
           return new Error(500).return('Something wrong');
         }

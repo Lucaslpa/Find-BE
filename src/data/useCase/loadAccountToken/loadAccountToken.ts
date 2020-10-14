@@ -1,6 +1,6 @@
 import {loadAccountTokenTypes} from '../../../domain/useCase/loadAccountToken';
 import {DecodeType} from '../../interfaces';
-import {error} from '../../../presentation/controllers/validators/interfaces';
+import {error} from '../../../presentation/controllers/CompositeValidators/interfaces';
 
 
 export default class LoadAccountToken implements loadAccountTokenTypes {

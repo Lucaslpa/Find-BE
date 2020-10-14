@@ -5,6 +5,12 @@ export class Querys implements QueryRepositoryTypes {
  constructor(entity: any) {
    this.repo = entity;
  }
+ async getAll(): Promise<any> {
+   const Repository = getRepository(this.repo);
+   const res = await Repository.query('select * from pubs');
+   return res;
+ }
+
  async get(Data: any): Promise<any> {
    const Repository = getRepository(this.repo);
    const res = await Repository.findOne({where: {
@@ -13,8 +19,6 @@ export class Querys implements QueryRepositoryTypes {
 
    return res;
  }
-
-
  async create(Data: any): Promise<any> {
    const Repository = await getRepository(this.repo);
    const res = await Repository.insert(Data);
@@ -25,5 +29,13 @@ export class Querys implements QueryRepositoryTypes {
      };
    }
    return Promise.resolve(res);
+ }
+
+ async edit(data: any ): Promise<any> {
+   const Repository = await getRepository(this.repo);
+   const account = await Repository.query(`UPDATE account
+   SET ${data.modifie.editField} = '${data.modifie.dataEditField}'
+   WHERE email = '${data.email}'`);
+   return account;
  }
 }

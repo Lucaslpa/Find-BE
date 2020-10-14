@@ -1,41 +1,31 @@
 import {accountLoginTypes, LoginControllerTypes} from './interfaces';
 import {Error} from '../../../domain/protocols/errors/ProcessError';
-import {ValidatorEmailTypes} from '../../../utils/email-valitator/interfaces';
 import {ClassAuthenticate} from '../../../domain/useCase/authentication.interface';
-import {error, success} from '../../../presentation/controllers/validators/interfaces';
+import {error, success} from '../CompositeValidators/interfaces';
+import {Validation} from '../CompositeValidators/interfaces';
 
 
 class LoginController implements LoginControllerTypes {
-   private readonly emailvalidator: ValidatorEmailTypes
+   private readonly validators : Validation
    private readonly auth
-   constructor(emailvalidator: ValidatorEmailTypes, auth: ClassAuthenticate ) {
-     this.emailvalidator = emailvalidator;
+   constructor(validators: Validation, auth: ClassAuthenticate ) {
+     this.validators = validators;
      this.auth = auth;
    }
 
    async login(accountLogin: accountLoginTypes ): Promise<error| success> {
      try {
-       const fields = [accountLogin.email, accountLogin.password];
        const {email, password} = accountLogin;
-       const fieldsName = ['email', 'password'];
-       for ( let i = 0; i < fields.length; i++) {
-         const field = fields[i];
-         if (!field) {
-           return new Error(400).return(` ${fieldsName[i]} not inserted`);
-         }
+       const validation = this.validators.validate(accountLogin);
+       if (validation) {
+         return validation;
        }
-       if (email) {
-         const isValid = await this.emailvalidator.isValid(email);
-         if (!isValid) {
-           return new Error(400).return(' Email is invalid');
-         }
-       }
+
        let token: error | success;
        if (email && password) {
          token = await this.auth.auth(email, password);
-         console.log(token);
-         if (token.status === 500) {
-           return new Error(401).return(' Unauthorized');
+         if (token.status === 401) {
+           return new Error(401).return('Unauthorized');
          }
        }
        return new Promise((resolve) => resolve(token));

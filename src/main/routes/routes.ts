@@ -1,18 +1,20 @@
 /* eslint-disable new-cap */
 import {Router} from 'express';
 import RoutesController from './routesControllers';
-import {Middlewares} from './middlewaresController';
 
 
 const router = Router();
-const middlewares = new Middlewares;
 
 const routescontroller = new RoutesController;
 
 
 router.post('/signup', routescontroller.signup );
-router.get('/test', middlewares.authMiddleware, routescontroller.getsignup );
+router.post('/sendEmail', routescontroller.sendEmail );
 router.post('/login', routescontroller.login);
+router.post('/publish', routescontroller.publish);
+router.put('/editPassword', routescontroller.editAccount);
+router.get('/AllPubs', routescontroller.listpubs);
+
 
 
 export default router;

@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 export interface encrypt {
     encrypt(value: string): Promise<string>
+    compare(value: string, hash: string): Promise<boolean>
 }
 
 export class Encrytp implements encrypt {

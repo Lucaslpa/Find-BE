@@ -1,4 +1,4 @@
-import {error, success} from '../../presentation/controllers/validators/interfaces';
+import {error, success} from '../../presentation/controllers/CompositeValidators/interfaces';
 
 
 export interface Middleware {

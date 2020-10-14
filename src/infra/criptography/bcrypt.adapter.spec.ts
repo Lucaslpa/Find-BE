@@ -16,7 +16,7 @@ describe('Encrypter', () => {
     expect(spy).toHaveBeenCalledWith('value', 12);
   });
 
-  test(' bcrypt should return a hash value', async () => {
+  test('bcrypt should return a hash value', async () => {
     const bcryptadapter = makeBcryptAdapter();
     jest.spyOn(bcryptadapter, 'encrypt').mockReturnValueOnce(new Promise((resolve) => resolve('hash')));
     const res = await bcryptadapter.encrypt('value');
@@ -25,7 +25,7 @@ describe('Encrypter', () => {
   });
 
 
-  test(' bcrypt should false if not equal', async () => {
+  test('bcrypt should false if not equal', async () => {
     const bcryptadapter = makeBcryptAdapter();
     jest.spyOn(bcryptadapter, 'compare').mockReturnValueOnce(new Promise((resolve) => resolve(true)));
     const res = await bcryptadapter.compare('any', 'any');

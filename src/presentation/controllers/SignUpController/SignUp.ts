@@ -1,7 +1,7 @@
 import {SignUpTypesRequest, SignUpControllerTypes,
   AddAccountType, SignUpTypesResponse,
 } from './interfaces';
-import {Validation} from '../validators/interfaces';
+import {Validation} from '../CompositeValidators/interfaces';
 
 
 class SignUpController implements SignUpControllerTypes {
@@ -17,12 +17,7 @@ class SignUpController implements SignUpControllerTypes {
      if (errortest) {
        return errortest;
      }
-     const newdata = {
-       email: Data.email,
-       name: Data.name,
-       password: Data.password,
-     };
-     const account = await this.addaccount.add(newdata);
+     const account = await this.addaccount.add(Data);
 
      return {
        status: 200,

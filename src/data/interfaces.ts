@@ -1,7 +1,21 @@
 import {erro} from '../domain/protocols/errors/ProcessError';
+import {dataAccountupdate} from '../domain/useCase/updateAccount';
+
+
 export interface encrypt {
     encrypt(password: string): Promise<string>
 }
+export interface account{
+    email: string
+    password: string
+  }
+
+export interface DBrepositoryQuerys {
+    addToDB(Account: DataAccountTypes): Promise<DataAccountTypesRes>
+    getOfDb(email: string): Promise<DataAccountTypesRes>
+    editDB(data: dataAccountupdate ): Promise<DataAccountTypesRes>
+}
+
 
 export interface DataAccountTypes {
    name: string,
@@ -17,20 +31,14 @@ export interface DataAccountTypesRes {
     password: string
  }
 
-export interface AddAccountRepositoryTypes {
-    addToDB(Account: DataAccountTypes): Promise<DataAccountTypesRes>
- }
 
 export interface dbAccountTypes {
     add(DataAccount: DataAccountTypes ): Promise<DataAccountTypesRes>
  }
 
-export interface DBrepoType {
-    getOfDb(email: string): Promise<DataAccountTypesRes>
- }
 
 export interface TokenGeneratorType {
-    loadToken(data: string) : Promise<string | erro>
+    loadToken(id: string, email: string) : Promise<string | erro>
  }
 
 export interface CompareType {

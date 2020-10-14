@@ -1,5 +1,5 @@
 
-import {error} from '../../presentation/controllers/validators/interfaces';
+import {error} from '../../presentation/controllers/CompositeValidators/interfaces';
 
 
 export interface loadAccountTokenTypes {
