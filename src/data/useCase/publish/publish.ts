@@ -7,7 +7,7 @@ export class Publish implements publish {
      private readonly dbrepo: pubsrepo,
   ) {}
   async pub(data: data ): Promise<any> {
-    this.dbrepo.addToDB(data);
-    return;
+    const res = await this.dbrepo.addToDB(data);
+    return res;
   }
 }

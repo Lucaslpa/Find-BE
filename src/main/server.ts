@@ -4,7 +4,7 @@ import connection from '../infra/db/ConnectionHelper';
 import cors from 'cors';
 import express from 'express';
 const app = express();
-
+ 
 app.use(express.json());
 const corsOptions = {
   origin: 'http://localhost:3000',

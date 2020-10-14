@@ -14,8 +14,9 @@ export class PublishController {
       'preço',
       'localizaçao',
       'typo'];
+
     for (const field of fields ) {
-      if (data[field]) {
+      if (!data[field]) {
         return {
           status: 400,
           body: `${field} não inserido`,
@@ -24,12 +25,17 @@ export class PublishController {
     }
 
     const res = await this.publish.pub(data);
-
-    if (res.ip) {
+    console.log(res);
+    if (res.id) {
       return {
         status: 200,
         body: `Publicado com sucesso.`,
       };
     }
+
+    return {
+      status: 500,
+      body: 'Something wrong',
+    };
   }
 }

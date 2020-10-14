@@ -9,4 +9,9 @@ export class PubsRepo {
     const res = await this.dbquery.create(data);
     return res;
   }
+
+  async getOfDB(): Promise<[{}]> {
+    const res = await this.dbquery.getAll();
+    return res;
+  }
 }
