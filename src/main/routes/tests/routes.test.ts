@@ -43,7 +43,6 @@ describe('Routes', () => {
     const data = {
       password: faker.random.words(),
     };
-    console.log(data);
     await supertest(app).put('/editPassword?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5OSIsImVtYWlsIjoiMWx1Y2FzbHBhMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjAyMTIyNTI5fQ.h1EBBPdr6RtYA_UVg3HcGTyQs9Vi6CGi5YeGXO2zSmI').send(data).expect(200);
   });
 });

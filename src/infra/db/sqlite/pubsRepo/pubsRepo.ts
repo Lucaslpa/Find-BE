@@ -1,4 +1,5 @@
-import {data} from './../../../../domain/useCase/publish.interfaace';
+
+import {data} from '../../../../domain/repos/pubsRepo';
 import {QueryRepositoryTypes} from './../../Querys/interfaces';
 export class PubsRepo {
   constructor(

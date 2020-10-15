@@ -7,11 +7,9 @@ import {publishFactory} from '../factories/controllers/publishFactory';
 import {listPubs} from '../factories/listpubsfactory';
 class Routes {
   async publish(req: Request, res: Response) {
-    const {title, companyName, tecnology, informações, contato, preço, localizaçao, typo, presencialOuRemoto} = req.body;
-    console.log(title);
-    const response = await publishFactory().pub({title, companyName, tecnology, informações, contato, preço, localizaçao, typo, presencialOuRemoto});
+    const {token, title, companyName, tecnology, informações, contato, preço, localizaçao, typo, presencialOuRemoto} = req.body;
+    const response = await publishFactory().pub({token, title, companyName, tecnology, informações, contato, preço, localizaçao, typo, presencialOuRemoto});
     const status = response?.status || 500;
-    console.log('hahahah');
     return res.status(status).json(response?.body);
   }
 
@@ -20,9 +18,8 @@ class Routes {
     return res.status(response.status).json(response);
   }
   async login(req: Request, res: Response) {
-    console.log(req);
     const response = await logincontrollerfacotry().login(req.body);
-    console.log(response);
+
     return res.status(response.status).json(response);
   }
   async sendEmail(req: Request, res: Response) {
