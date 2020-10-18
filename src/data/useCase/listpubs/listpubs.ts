@@ -5,8 +5,8 @@ export class Listpubs implements listpubs {
   constructor(
             private readonly pubsrepo: pubsrepo,
   ) {}
-  async list(): Promise<any> {
-    const res = await this.pubsrepo.getOfDB();
+  async list(index:number): Promise<any> {
+    const res = await this.pubsrepo.getOfDB(index);
 
     if (!res) {
       return {

@@ -41,7 +41,10 @@ class Routes {
   }
 
   async listpubs(req: Request, res: Response) {
-    const response = await listPubs().list();
+    const {page} = req.query;
+    const pages = Number(page) || 1;
+
+    const response = await listPubs().list(pages);
     return res.status(response.status).json(response);
   }
 }

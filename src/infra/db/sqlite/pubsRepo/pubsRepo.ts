@@ -7,12 +7,14 @@ export class PubsRepo {
   ) {}
 
   async addToDB(data: data): Promise<any> {
+    console.log(data);
     const res = await this.dbquery.create(data);
     return res;
   }
 
-  async getOfDB(): Promise<[{}]> {
-    const res = await this.dbquery.getAll();
+  async getOfDB(index:number): Promise<[{}]> {
+    const res = await this.dbquery.getAll(index * 10 - 10 );
+
     return res;
   }
 }

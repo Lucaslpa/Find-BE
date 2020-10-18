@@ -2,5 +2,5 @@
 
 export interface listpubs {
 
- list(): Promise<any>
+    list(index:number): Promise<any>
 }

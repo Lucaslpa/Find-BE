@@ -11,7 +11,12 @@ export class GenerateContent implements generatecontent {
     if (!account) {
       return 400;
     }
-    const token = await this.loadToken.loadToken(String(account.id), account.email);
+    const tokenDataToGenerateToken = {
+      id: String(account.id),
+      name: account.name,
+      email: account.email,
+    };
+    const token = await this.loadToken.loadToken(tokenDataToGenerateToken);
     const link = `http://localhost:3000/editPassword?token=${token}`;
     const data = {
       from: 'Encontre group',

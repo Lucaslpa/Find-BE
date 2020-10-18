@@ -13,5 +13,5 @@ export interface data {
 }
 export interface pubsrepo {
     addToDB(data: data): Promise<any>
-    getOfDB(): Promise<[{}]>
+    getOfDB(index: number): Promise<[{}]>
 }

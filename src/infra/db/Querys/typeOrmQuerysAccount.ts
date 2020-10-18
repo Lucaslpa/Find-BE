@@ -5,9 +5,9 @@ export class Querys implements QueryRepositoryTypes {
  constructor(entity: any) {
    this.repo = entity;
  }
- async getAll(): Promise<any> {
+ async getAll(data:any): Promise<any> {
    const Repository = getRepository(this.repo);
-   const res = await Repository.query('select * from pubs');
+   const res = await Repository.find({skip: data, take: 10});
    return res;
  }
 
