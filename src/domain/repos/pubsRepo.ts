@@ -14,4 +14,6 @@ export interface data {
 export interface pubsrepo {
     addToDB(data: data): Promise<any>
     getOfDB(index: number): Promise<[{}]>
+    searchOfDB(index:number, search:string): Promise<[{}]>
+    searchRegionOfDB(index:number, region:string): Promise<[{}]>
 }

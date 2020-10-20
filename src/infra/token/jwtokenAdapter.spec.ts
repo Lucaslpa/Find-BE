@@ -14,29 +14,26 @@ jest.mock('jsonwebtoken', () => ({
 }
 ));
 
-const makeData = () => {
-  const id= 'any_value';
-  const email = 'any_email';
-  return {
-    id,
-    email,
-  };
+const data = {
+  id: 'any_id',
+  email: 'any_email',
+  name: 'any_name',
 };
 
 describe('jwtoken', () => {
   test('should call jwt encrypt with correct values ', () => {
     const jwtokenadapter = new LoadToken('private_key');
-    const {email, id} = makeData();
-    const spy = jest.spyOn(jwt, 'sign');
-    jwtokenadapter.loadToken(id, email);
 
-    expect(spy).toHaveBeenCalledWith(makeData(), 'private_key');
+    const spy = jest.spyOn(jwt, 'sign');
+    jwtokenadapter.loadToken(data);
+
+    expect(spy).toHaveBeenCalledWith(data, 'private_key');
   });
 
   test('should return error if load tokens fail', async () => {
     const jwtokenadapter = new LoadToken('private_key');
-    const {email, id} = makeData();
-    const token = await jwtokenadapter.loadToken(email, id);
+
+    const token = await jwtokenadapter.loadToken(data);
     expect(token).toEqual('any_value');
   });
 

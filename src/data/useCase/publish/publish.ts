@@ -9,9 +9,7 @@ export class Publish implements publish {
      private readonly verify: decodeTokenType,
   ) {}
   async pub(data: data ): Promise<any> {
-    console.log(data);
     const tokenIsValid = await this.verify.decodeToken(data.token);
-    console.log(tokenIsValid);
     if (tokenIsValid.status) {
       return tokenIsValid;
     }

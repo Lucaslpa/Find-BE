@@ -16,6 +16,7 @@ router.post('/login', routescontroller.login);
 router.post('/publish', middlewares.authMiddleware, routescontroller.publish);
 router.put('/editPassword', routescontroller.editAccount);
 router.get('/allpubs', middlewares.authMiddleware, routescontroller.listpubs);
+router.get('/search', middlewares.authMiddleware, routescontroller.search);
 
 
 export default router;

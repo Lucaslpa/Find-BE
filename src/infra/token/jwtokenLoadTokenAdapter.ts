@@ -12,7 +12,7 @@ export class LoadToken implements loadTokenType {
 
     async loadToken(data: datainterface) : Promise<string | erro> {
       try {
-        const token = jwt.sign({data}, this.privateKey);
+        const token = jwt.sign(data, this.privateKey);
         if (!token) {
           return new Error(500).return('Something wrong');
         }

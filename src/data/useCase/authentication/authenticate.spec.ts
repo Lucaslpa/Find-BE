@@ -5,21 +5,11 @@ import {SqliteAccountRepo} from '../../../infra/db/sqlite/accountRepo/sqliteAcco
 import {Querys} from '../../../infra/db/Querys/typeOrmQuerysAccount';
 import accountentity from '../../../infra/db/sqlite/database/entity/Accounts.entity';
 import connection from '../../../infra/db/ConnectionHelper';
-
-
-const token = () => {
-  class Token {
-    async loadToken(data: string) : Promise<string > {
-      return '34242342342423523';
-    }
-  }
-
-  return new Token;
-};
-
+import {LoadToken} from '../../../infra/token/jwtokenLoadTokenAdapter';
+import authenticatekey from '../../../../.authenticateKey';
 
 const makeAuthenticate = () => {
-  const tokenGenerator = token();
+  const tokenGenerator = new LoadToken(authenticatekey);
   const compare = new Encrytp;
 
   const querys = new Querys(accountentity);
@@ -91,6 +81,6 @@ describe('authenticate', () => {
     };
 
     await authenticate.auth(data.email, data.password);
-    expect(spy).toHaveBeenCalledWith('10', 'lucas@gmail.com');
+    expect(spy).toHaveBeenCalledWith( {'email': 'lucas@gmail.com', 'id': '10', 'name': 'lucas'});
   });
 });
