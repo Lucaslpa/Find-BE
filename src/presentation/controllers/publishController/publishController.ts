@@ -6,6 +6,8 @@ export class PublishController {
          private readonly publish: publish,
   ) {}
   async pub(data: any ) {
+
+    console.log(data)
     const fields = [
       'token',
       'title',

@@ -37,7 +37,7 @@ export class Querys implements QueryRepositoryTypes {
 
  async getAll(data:any): Promise<any> {
    const Repository = getRepository(this.repo);
-   const res = await Repository.find({skip: data, take: 10});
+   const res = (await Repository.find({skip: data, take: 10}));
    return res;
  }
 
