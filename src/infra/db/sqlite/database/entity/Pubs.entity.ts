@@ -1,5 +1,6 @@
 /* eslint-disable new-cap */
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from 'typeorm';
+import Account from './Accounts.entity';
 
   @Entity()
 export default class Pubs {
@@ -23,4 +24,6 @@ export default class Pubs {
       typo?: string
       @Column()
       presencialOuRemoto?: string
+      @ManyToOne(()=> Account, (account) => account.pubs )
+      account?: Account
 }

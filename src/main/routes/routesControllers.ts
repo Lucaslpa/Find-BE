@@ -5,13 +5,24 @@ import {sendEmailFactory} from '../factories/sendEmailFactory';
 import {editAccountFactory} from '../../main/factories/controllers/editAccountFactory';
 import {publishFactory} from '../factories/controllers/publishFactory';
 import {listPubs} from '../factories/listpubsfactory';
+import {searchFactory} from '../../main/factories/controllers/searchFactory';
 class Routes {
+  async search(req: Request, res: Response) {
+    const {index, search, region} = req.headers;
+    console.log('meu deus', index, search, region);
+    const data = {index: Number(index) || 1, search: String(search) || '', region: String(region) || ''};
+    const r = await searchFactory().search(data);
+    const response:any = {
+      status: r?.status || 500,
+      body: r?.body || 'erro',
+    };
+    res.status(response?.status).json(response?.body);
+  }
+
   async publish(req: Request, res: Response) {
-    const {title, companyName, tecnology, informações, contato, preço, localizaçao, typo, presencialOuRemoto} = req.body;
-    console.log(title);
-    const response = await publishFactory().pub({title, companyName, tecnology, informações, contato, preço, localizaçao, typo, presencialOuRemoto});
+    const {token, title, companyName, tecnology, informações, contato, preço, localizaçao, typo, presencialOuRemoto} = req.body;
+    const response = await publishFactory().pub({token, title, companyName, tecnology, informações, contato, preço, localizaçao, typo, presencialOuRemoto});
     const status = response?.status || 500;
-    console.log('hahahah');
     return res.status(status).json(response?.body);
   }
 
@@ -20,9 +31,8 @@ class Routes {
     return res.status(response.status).json(response);
   }
   async login(req: Request, res: Response) {
-    console.log(req);
     const response = await logincontrollerfacotry().login(req.body);
-    console.log(response);
+
     return res.status(response.status).json(response);
   }
   async sendEmail(req: Request, res: Response) {
@@ -44,7 +54,10 @@ class Routes {
   }
 
   async listpubs(req: Request, res: Response) {
-    const response = await listPubs().list();
+    const {page} = req.query;
+    const pages = Number(page) || 1;
+
+    const response = await listPubs().list(pages);
     return res.status(response.status).json(response);
   }
 }

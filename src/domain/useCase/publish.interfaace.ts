@@ -1,4 +1,5 @@
 export interface data {
+    token: string
     title : string
     companyName: string
     tecnology: string

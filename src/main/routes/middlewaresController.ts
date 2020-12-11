@@ -4,7 +4,11 @@ import {Request, Response, NextFunction} from 'express';
 
 export class Middlewares {
   async authMiddleware(req: Request, res: Response, next : NextFunction) {
+    if (!req.headers.authorization) {
+      return res.status(401).json('Unauthorized');
+    }
     const token = req.headers.authorization?.split(' ');
+
     if (token) {
       const authorizade = await middlewreTokenFacory().load(token[1]);
       if (authorizade) {

@@ -21,6 +21,7 @@ describe('Name of the group', () => {
   test('should insert a pub into db ', async () => {
     const {sut} = makeSut();
     const data = {
+      account: '1',
       title: 'teste',
       companyName: 'teste_company',
       tecnology: 'python',

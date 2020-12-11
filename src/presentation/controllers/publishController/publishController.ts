@@ -6,7 +6,11 @@ export class PublishController {
          private readonly publish: publish,
   ) {}
   async pub(data: any ) {
-    const fields = ['title',
+
+    console.log(data)
+    const fields = [
+      'token',
+      'title',
       'companyName',
       'tecnology',
       'informações',
@@ -25,7 +29,7 @@ export class PublishController {
     }
 
     const res = await this.publish.pub(data);
-    console.log(res);
+
     if (res.id) {
       return {
         status: 200,

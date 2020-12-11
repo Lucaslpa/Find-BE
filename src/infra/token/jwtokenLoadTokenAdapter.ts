@@ -1,6 +1,8 @@
 import {loadTokenType} from './jwtokeninterfaces';
 import jwt from 'jsonwebtoken';
 import {erro, Error} from '../../domain/protocols/errors/ProcessError';
+import {datainterface} from './jwtokeninterfaces';
+
 
 export class LoadToken implements loadTokenType {
     private readonly privateKey: string
@@ -8,9 +10,9 @@ export class LoadToken implements loadTokenType {
       this.privateKey = privateKey;
     }
 
-    async loadToken(id: string, email: string) : Promise<string | erro> {
+    async loadToken(data: datainterface) : Promise<string | erro> {
       try {
-        const token = jwt.sign({id, email}, this.privateKey);
+        const token = jwt.sign(data, this.privateKey);
         if (!token) {
           return new Error(500).return('Something wrong');
         }

@@ -37,9 +37,15 @@ export interface dbAccountTypes {
  }
 
 
-export interface TokenGeneratorType {
-    loadToken(id: string, email: string) : Promise<string | erro>
+ export interface datainterface{
+    id: string,
+    name: string
+    email: string
  }
+
+export interface loadTokenType {
+    loadToken(data: datainterface ) : Promise<string | erro>,
+}
 
 export interface CompareType {
      compare(value: string, hash: string): Promise<boolean>

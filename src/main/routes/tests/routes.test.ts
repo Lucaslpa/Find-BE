@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import app from '../../server';
 import connection from '../../../infra/db/ConnectionHelper';
-import faker from 'faker';
+
 
 describe('Routes', () => {
   beforeAll(async ()=>{
@@ -10,9 +10,6 @@ describe('Routes', () => {
 
   afterAll(async ()=>{
     await connection.close();
-  });
-
-  beforeEach(async () => {
   });
 
 
@@ -37,13 +34,5 @@ describe('Routes', () => {
       email: '1lucaslpa12345@gmail.com',
     };
     await supertest(app).post('/sendEmail').send(data).expect(200);
-  });
-
-  test('should return 200 status if account update with success', async () => {
-    const data = {
-      password: faker.random.words(),
-    };
-    console.log(data);
-    await supertest(app).put('/editPassword?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5OSIsImVtYWlsIjoiMWx1Y2FzbHBhMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjAyMTIyNTI5fQ.h1EBBPdr6RtYA_UVg3HcGTyQs9Vi6CGi5YeGXO2zSmI').send(data).expect(200);
   });
 });
